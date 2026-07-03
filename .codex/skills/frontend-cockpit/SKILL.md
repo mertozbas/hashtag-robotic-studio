@@ -1,3 +1,8 @@
+---
+name: frontend-cockpit
+description: Use when building or reviewing the Hashtag Robotic Studio desktop cockpit UI, including Turkish/English i18n, glass cockpit layout, visual states, accessibility, and frontend screens.
+---
+
 # Frontend Cockpit Skill
 
 Use this skill when building the desktop app UI, i18n, layout, or visual system.
@@ -15,4 +20,3 @@ Use this skill when building the desktop app UI, i18n, layout, or visual system.
 - Use glass for shell/HUD/status, solid high-contrast panels for critical controls/logs/tables.
 - Critical physical actions must be visually unambiguous.
 - Define loading, empty, error, blocked, ready, running, and stopped states.
-

@@ -1,3 +1,8 @@
+---
+name: so101-agent-ops
+description: Use when designing or implementing Strands Agent features for Hashtag Robotic Studio, including robot tools, operation requests, session-scoped physical control, tool-call streams, and SafetyGate integration.
+---
+
 # SO101 Agent Operations Skill
 
 Use this skill when designing or implementing Strands Agent features for Hashtag Robotic Studio.
@@ -38,4 +43,3 @@ request_*_operation -> creates RobotOperation
 run_*_session_action -> only available inside approved session
 stop_operation -> always available
 ```
-

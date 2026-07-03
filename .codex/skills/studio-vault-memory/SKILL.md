@@ -1,3 +1,8 @@
+---
+name: studio-vault-memory
+description: Use when creating or updating Hashtag Robotic Studio project knowledge, markdown vault notes, memory sources, seed manifests, worklogs, or token-efficient context workflows.
+---
+
 # Studio Vault And Memory Skill
 
 Use this skill when creating or updating project knowledge, memory, decisions, worklogs, or token-efficient context.
@@ -20,4 +25,3 @@ Use this skill when creating or updating project knowledge, memory, decisions, w
 ## Note Types
 
 Use `docs/templates/vault-note-template.md`.
-

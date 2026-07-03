@@ -1,3 +1,8 @@
+---
+name: local-gateway
+description: Use when implementing or reviewing the Hashtag Robotic Studio local FastAPI gateway, robot contracts, adapters, event streams, SafetyGate, or operation state machines.
+---
+
 # Local Gateway Skill
 
 Use this skill when implementing the FastAPI local gateway, contracts, adapters, event streams, SafetyGate, or operation state machines.
@@ -24,4 +29,3 @@ Use this skill when implementing the FastAPI local gateway, contracts, adapters,
 - state machine tests
 - SafetyGate tests
 - fake operation event stream tests
-

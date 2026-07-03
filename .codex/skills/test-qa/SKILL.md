@@ -1,3 +1,8 @@
+---
+name: test-qa
+description: Use when writing tests, verification scripts, acceptance checks, QA plans, or reviewing implementation quality for Hashtag Robotic Studio contracts, gateway, UI, safety, SDK, or packaging work.
+---
+
 # Test QA Skill
 
 Use this skill when writing tests, verification scripts, acceptance checks, or reviewing implementation quality.
@@ -20,4 +25,3 @@ Use this skill when writing tests, verification scripts, acceptance checks, or r
 ```bash
 python3 tools/verify_phase.py --phase <phase-id>
 ```
-

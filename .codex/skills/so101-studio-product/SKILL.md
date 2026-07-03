@@ -1,3 +1,8 @@
+---
+name: so101-studio-product
+description: Use when designing or implementing Hashtag Robotic Studio product surfaces, customer workflows, dashboard scope, product architecture, Turkish/English UX, or feature tradeoffs.
+---
+
 # SO101 Studio Product Skill
 
 Use this skill when designing or implementing product surfaces for Hashtag Robotic Studio.
@@ -35,4 +40,3 @@ For design tasks, produce:
 - blockers/errors
 - API/contract requirements
 - safety implications
-

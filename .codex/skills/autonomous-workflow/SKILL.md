@@ -1,3 +1,8 @@
+---
+name: autonomous-workflow
+description: Use when Codex should continue work, run the next roadmap phase, work autonomously, reduce repeated prompts, or complete a multi-step implementation loop with context packing, verification, memory updates, and commits for Hashtag Robotic Studio.
+---
+
 # Autonomous Workflow Skill
 
 Use this skill when the user asks Codex to continue work, run the next phase, work autonomously, reduce repeated prompts, or complete a multi-step implementation loop.
@@ -29,4 +34,3 @@ python3 tools/context_pack.py --phase <phase-id> --task "<task>"
 ## Hard Stops
 
 Stop and ask only for physical robot movement, calibration overwrite, dataset/checkpoint deletion, long training/model download, Docker pull, external login/account action, or public publishing.
-

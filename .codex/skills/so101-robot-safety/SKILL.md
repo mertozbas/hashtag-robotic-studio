@@ -1,3 +1,8 @@
+---
+name: so101-robot-safety
+description: Use when touching SO101 physical robot operations, calibration, teleoperation, real rollout, agent tools that can move hardware, destructive dataset/checkpoint actions, or safety review.
+---
+
 # SO101 Robot Safety Skill
 
 Use this skill when touching physical robot operations, calibration, teleoperation, real rollout, agent tools that can move hardware, or destructive dataset/checkpoint actions.
@@ -42,4 +47,3 @@ For any physical operation path, verify:
 - speed/action limit
 - emergency stop
 - event logging
-
