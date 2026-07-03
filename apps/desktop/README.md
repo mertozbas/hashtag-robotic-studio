@@ -17,8 +17,13 @@ Current surfaces:
 - Home / `Başlangıç`
 - Devices / `Cihazlar`
 - Calibration / `Kalibrasyon`
+- Live Control / `Canlı Kontrol`
+- Recording / `Kayıt`
+- Datasets / `Datasetler`
+- Policies / `Policyler`
 - Agent
 - Diagnostics / `Tanılama`
+- Settings / `Ayarlar`
 
 Gateway reads:
 
@@ -28,6 +33,8 @@ Gateway reads:
 - `GET /datasets`
 - `GET /policies/compatibility`
 - `GET /agent/tools`
+- `GET /settings/api-keys`
+- `POST /settings/api-keys/{provider}`
 - `GET /events` through SSE
 
 Safety stance:
@@ -36,5 +43,7 @@ Safety stance:
   solid, high contrast, and blocked by default.
 - No UI action talks directly to LeRobot, Strands Robots, serial ports, cameras,
   datasets, checkpoints, or hardware.
+- API key values are submitted to the local gateway but not rendered back,
+  included in diagnostics, or included in support bundle payloads.
 - The shell choice remains open; phase-8 records Tauri preferred with Electron
   fallback until the packaging spike is run.

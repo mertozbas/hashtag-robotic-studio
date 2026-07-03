@@ -3,6 +3,7 @@
 from packages.contracts.models import (
     APP_NAME,
     APP_VERSION,
+    ApiKeyProviderStatus,
     CapabilityInventory,
     AgentTool,
     CalibrationStatus,
@@ -24,11 +25,13 @@ from packages.contracts.models import (
     RobotOperation,
     SafetyGateResult,
     SafetyLevel,
+    SecretUpdateRequest,
 )
 
 __all__ = [
     "APP_NAME",
     "APP_VERSION",
+    "ApiKeyProviderStatus",
     "CapabilityInventory",
     "AgentTool",
     "CalibrationStatus",
@@ -50,4 +53,5 @@ __all__ = [
     "RobotOperation",
     "SafetyGateResult",
     "SafetyLevel",
+    "SecretUpdateRequest",
 ]

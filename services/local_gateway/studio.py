@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from packages.contracts import (
     AgentTool,
+    ApiKeyProviderStatus,
     DatasetSummary,
     FeatureMapping,
     OperationMode,
@@ -140,4 +141,29 @@ def get_operation_templates() -> list[dict]:
             "required_inputs": ["dataset_path", "task_text", "duration_limit", "emergency_stop"],
             "physical_motion": True,
         },
+    ]
+
+
+def list_api_key_providers(secret_status: dict[str, str] | None = None) -> list[ApiKeyProviderStatus]:
+    secret_status = secret_status or {}
+    providers = [
+        ("huggingface", "Hugging Face", ["dataset_upload", "remote_training", "model_download"], ["read", "write"]),
+        ("openai", "OpenAI", ["agent_llm"], ["responses", "tools"]),
+        ("anthropic", "Anthropic", ["agent_llm"], ["messages"]),
+        ("google", "Google Gemini", ["agent_llm"], ["generative-ai"]),
+        ("github", "GitHub", ["issue_sync", "release_notes"], ["repo"]),
+        ("wandb", "Weights & Biases", ["training_tracking"], ["project"]),
+        ("aws", "AWS", ["artifact_storage"], ["s3"]),
+        ("custom_mcp", "Custom MCP Gateway", ["tool_connectors"], ["tools"]),
+    ]
+    return [
+        ApiKeyProviderStatus(
+            provider=provider,
+            label=label,
+            connected=provider in secret_status,
+            required_for=required_for,
+            scopes=scopes,
+            last_four=secret_status.get(provider),
+        )
+        for provider, label, required_for, scopes in providers
     ]

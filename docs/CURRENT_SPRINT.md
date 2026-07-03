@@ -14,8 +14,8 @@ contracts instead of adding more placeholder surface.
 2. Choose and test Tauri vs Electron packaging for the bundled Python gateway.
 3. Replace fake inventory with read-only adapters while preserving no-motion guarantees.
 4. Preserve SO101 physical safety rules from the lab system.
-5. Keep agent-driven robot control behind tools, contracts, safety gates, and logged operation runners.
-6. Keep memory and knowledge notes compact as implementation decisions land.
+5. Wire API key vault persistence to OS keychain before any customer build.
+6. Keep agent-driven robot control behind tools, contracts, safety gates, and logged operation runners.
 
 ## Not In Scope Yet
 
@@ -55,6 +55,16 @@ contracts instead of adding more placeholder surface.
 - Added verification coverage for phases 2 through 8.
 - No physical robot movement, calibration write, dataset deletion, checkpoint
   deletion, model download, training job, Docker pull, or public publish was run.
+
+## Current UI Upgrade
+
+- Reworked the cockpit into a robot-readiness product dashboard.
+- Added SO101 arm visual, preflight checklist, device mapping, live-control
+  blockers, recording plan, dataset quality, policy/Hugging Face training, agent
+  tools, diagnostics, and settings screens.
+- Added API key vault UI and gateway endpoints for Hugging Face, OpenAI,
+  Anthropic, Gemini, GitHub, Weights & Biases, AWS, and custom MCP.
+- Secret values are accepted but never returned to the UI after submit.
 
 ## Added Autonomous Workflow Layer
 

@@ -53,6 +53,12 @@ SDK smoke checks, then customer packaging spike.
   disabled until a bounded session exists.
 - Phase 8 records the packaging plan surface and support bundle export skeleton
   with secrets excluded by default.
+- The cockpit has been upgraded from a placeholder shell into a product-style
+  SO101 readiness dashboard with arm connection preflight, live-control
+  blockers, Hugging Face training setup, and API key vault settings.
+- API key values can be submitted through the local gateway, but responses only
+  return masked status. Persistent storage must use OS keychain in the packaging
+  phase; secrets are not included in support bundles.
 
 ## Codex Development System
 

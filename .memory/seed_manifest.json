@@ -116,6 +116,15 @@
       "area": "roadmap",
       "importance": "high",
       "tags": ["phase-2", "phase-3", "phase-4", "phase-5", "phase-6", "phase-7", "phase-8"]
+    },
+    {
+      "type": "ui_decision",
+      "title": "Advanced dashboard and API key vault",
+      "file": "memory/source/ui/advanced_dashboard_api_key_vault.md",
+      "status": "active",
+      "area": "frontend",
+      "importance": "high",
+      "tags": ["dashboard", "api-keys", "huggingface", "so101", "safety"]
     }
   ]
 }

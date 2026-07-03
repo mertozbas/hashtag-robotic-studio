@@ -6,6 +6,7 @@ from typing import Any
 from uuid import uuid4
 
 from pydantic import BaseModel, Field
+from pydantic import SecretStr
 
 
 APP_NAME = "hashtag-robotic-studio-gateway"
@@ -204,3 +205,18 @@ class PackagingPlan(BaseModel):
     support_bundle_export: bool
     secrets_in_package: bool = False
     blockers: list[str] = Field(default_factory=list)
+
+
+class ApiKeyProviderStatus(BaseModel):
+    provider: str
+    label: str
+    connected: bool = False
+    required_for: list[str] = Field(default_factory=list)
+    scopes: list[str] = Field(default_factory=list)
+    last_four: str | None = None
+    storage: str = "runtime_memory"
+    secret_returned: bool = False
+
+
+class SecretUpdateRequest(BaseModel):
+    value: SecretStr

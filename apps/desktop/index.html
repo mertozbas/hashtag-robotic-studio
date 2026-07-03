@@ -9,14 +9,18 @@
   <body>
     <div class="app-shell">
       <header class="topbar">
-        <div>
-          <strong>Hashtag Robotic Studio</strong>
-          <span id="gateway-status">Gateway bekleniyor</span>
+        <div class="brand-lockup">
+          <span class="brand-mark">HS</span>
+          <div>
+            <strong>Hashtag Robotic Studio</strong>
+            <span id="gateway-status" class="status-line">Gateway bekleniyor</span>
+          </div>
         </div>
         <div class="top-actions">
+          <span id="robot-mode" class="pill neutral">SO101 local</span>
           <button id="language-toggle" class="icon-button" title="Dil değiştir">TR</button>
-          <button class="motor-lock critical amber" title="Motor kilidi" disabled>Kilitli</button>
-          <button class="stop-button critical stop" title="Acil durdur">STOP</button>
+          <button id="motor-lock-button" class="critical amber motor-lock" disabled>Motor kilitli</button>
+          <button id="stop-button" class="critical stop stop-button">STOP</button>
         </div>
       </header>
 
@@ -24,66 +28,182 @@
         <button data-screen="home" class="nav active">Başlangıç</button>
         <button data-screen="devices" class="nav">Cihazlar</button>
         <button data-screen="calibration" class="nav">Kalibrasyon</button>
+        <button data-screen="live" class="nav">Canlı Kontrol</button>
+        <button data-screen="recording" class="nav">Kayıt</button>
+        <button data-screen="datasets" class="nav">Datasetler</button>
+        <button data-screen="policies" class="nav">Policyler</button>
         <button data-screen="agent" class="nav">Agent</button>
         <button data-screen="diagnostics" class="nav">Tanılama</button>
+        <button data-screen="settings" class="nav">Ayarlar</button>
       </aside>
 
       <main class="workspace">
         <section data-panel="home" class="screen active">
-          <div class="hud-grid">
-            <article class="glass-panel">
-              <h1 id="home-title">Operasyon durumu</h1>
-              <p id="readiness">Yerel fake mod, fiziksel hareket kapalı.</p>
+          <div class="hero-grid">
+            <article class="robot-stage glass-panel">
+              <div class="stage-header">
+                <div>
+                  <p class="eyebrow">SO101 readiness</p>
+                  <h1>Robot kollarini baglamaya hazir cockpit</h1>
+                </div>
+                <strong id="readiness-score" class="score">0%</strong>
+              </div>
+              <div class="arm-visual" aria-label="SO101 arm readiness visualization">
+                <div class="axis base"></div>
+                <div class="axis shoulder"></div>
+                <div class="axis elbow"></div>
+                <div class="axis wrist"></div>
+                <div class="axis gripper"></div>
+                <div class="workspace-zone"></div>
+              </div>
+              <div class="metric-strip">
+                <div><span>Gateway</span><strong id="metric-gateway">Bekleniyor</strong></div>
+                <div><span>Follower</span><strong id="metric-follower">Secilmedi</strong></div>
+                <div><span>Leader</span><strong id="metric-leader">Opsiyonel</strong></div>
+                <div><span>SafetyGate</span><strong id="metric-safety">Bloklu</strong></div>
+              </div>
+            </article>
+
+            <article class="solid-panel preflight-panel">
+              <div class="panel-title">
+                <h2>Baglanti preflight</h2>
+                <button id="refresh-button" class="secondary">Yenile</button>
+              </div>
+              <ol id="preflight-list" class="step-list"></ol>
+            </article>
+          </div>
+
+          <div class="ops-grid">
+            <article class="solid-panel">
+              <h2>Sonraki guvenli aksiyon</h2>
+              <p id="recommended-action">Cihaz envanteri okunuyor.</p>
+              <div class="action-row">
+                <button data-jump="devices" class="primary">Cihazlari eslestir</button>
+                <button data-jump="calibration" class="secondary">Kalibrasyonu kontrol et</button>
+              </div>
             </article>
             <article class="solid-panel warning">
-              <h2>SafetyGate</h2>
-              <p id="safety-summary">Fiziksel hareket için unlock, süre limiti ve e-stop gerekli.</p>
+              <h2>Fiziksel hareket kilidi</h2>
+              <p>Teleop, motor testi, kayit ve real rollout kullanici unlock, sure limiti, e-stop ve SafetyGate onayi olmadan baslamaz.</p>
             </article>
           </div>
         </section>
 
         <section data-panel="devices" class="screen">
-          <article class="solid-panel">
-            <h1 id="devices-title">Cihazlar</h1>
-            <div id="device-list" class="table-list"></div>
-          </article>
+          <div class="section-head">
+            <div><p class="eyebrow">USB ve kamera</p><h1>Cihaz eslestirme</h1></div>
+            <button class="secondary" id="device-refresh">Envanteri yenile</button>
+          </div>
+          <div class="split-grid">
+            <article class="solid-panel"><h2>Port adaylari</h2><div id="port-list" class="table-list"></div></article>
+            <article class="solid-panel"><h2>Kamera adaylari</h2><div id="camera-list" class="table-list"></div></article>
+          </div>
         </section>
 
         <section data-panel="calibration" class="screen">
-          <article class="solid-panel">
-            <h1 id="calibration-title">Kalibrasyon</h1>
-            <button class="calibration-write critical stop" disabled>Kalibrasyon yazma engelli</button>
-            <div id="calibration-list" class="table-list"></div>
-          </article>
+          <div class="section-head">
+            <div><p class="eyebrow">SO101</p><h1>Kalibrasyon ve limitler</h1></div>
+            <button class="calibration-write critical stop" disabled>Kalibrasyon yazma kilitli</button>
+          </div>
+          <div class="split-grid">
+            <article class="solid-panel"><h2>Kalibrasyon dosyalari</h2><div id="calibration-list" class="table-list"></div></article>
+            <article class="solid-panel warning"><h2>Yazma politikasi</h2><p>Backup, robot rolu ve acik kullanici onayi olmadan calibration overwrite yok.</p></article>
+          </div>
+        </section>
+
+        <section data-panel="live" class="screen">
+          <div class="section-head">
+            <div><p class="eyebrow">Teleop hazirlik</p><h1>Canli kontrol</h1></div>
+            <button class="critical stop" disabled>Hareket kilitli</button>
+          </div>
+          <div class="control-grid">
+            <article class="solid-panel camera-preview"><h2>Kamera preview</h2><div class="preview-frame">Kamera secilmedi</div></article>
+            <article class="solid-panel"><h2>Session limitleri</h2><div id="operation-template-list" class="table-list"></div></article>
+            <article class="solid-panel warning real-rollout"><h2>Real rollout</h2><p id="rollout-summary">Mapping bilinmeden gercek rollout engelli.</p></article>
+          </div>
+        </section>
+
+        <section data-panel="recording" class="screen">
+          <div class="section-head">
+            <div><p class="eyebrow">LeRobot uyumlu</p><h1>Kayit plani</h1></div>
+          </div>
+          <div class="form-grid">
+            <label>Task metni<input value="nesneyi kutuya yerlestir" /></label>
+            <label>Dataset repo/path<input value="mert/so101-demo" /></label>
+            <label>Episode suresi<input value="30s" /></label>
+            <label>FPS<input value="30" /></label>
+          </div>
+          <article class="solid-panel warning"><h2>Kayit SafetyGate</h2><p>Kayit baslatma fiziksel hareket sayilir; robot baglantisi, e-stop ve sure limiti tamamlanmadan pasif kalir.</p></article>
+        </section>
+
+        <section data-panel="datasets" class="screen">
+          <div class="section-head">
+            <div><p class="eyebrow">Dataset Studio</p><h1>Episode kalite kontrol</h1></div>
+          </div>
+          <div id="dataset-list" class="table-list tall"></div>
+        </section>
+
+        <section data-panel="policies" class="screen">
+          <div class="section-head">
+            <div><p class="eyebrow">Hugging Face training</p><h1>Model egitimi ve policy uyumlulugu</h1></div>
+          </div>
+          <div class="split-grid">
+            <article class="solid-panel">
+              <h2>Hugging Face egitim ayari</h2>
+              <div class="form-grid compact">
+                <label>HF dataset repo<input value="mert/so101-pick-place" /></label>
+                <label>Policy family<select><option>ACT</option><option>Diffusion Policy</option><option>SmolVLA</option></select></label>
+                <label>Compute hedefi<select><option>Hugging Face Jobs / Space</option><option>Local GPU</option></select></label>
+                <label>Output model repo<input value="mert/so101-act-policy" /></label>
+              </div>
+              <button class="primary" disabled>HF token baglanmadan egitim hazirlanamaz</button>
+            </article>
+            <article class="solid-panel warning">
+              <h2>Policy compatibility</h2>
+              <div id="policy-report" class="table-list"></div>
+            </article>
+          </div>
         </section>
 
         <section data-panel="agent" class="screen">
-          <article class="solid-panel">
-            <h1 id="agent-title">Agent cockpit</h1>
-            <div id="agent-tools" class="table-list"></div>
-          </article>
-          <article class="solid-panel warning real-rollout">
-            <h2>Real rollout</h2>
-            <p id="rollout-summary">Mapping bilinmeden gerçek rollout engelli.</p>
-          </article>
+          <div class="section-head">
+            <div><p class="eyebrow">Tool stream</p><h1>Agent operasyon cockpit</h1></div>
+          </div>
+          <div class="split-grid">
+            <article class="solid-panel"><h2>Tool izinleri</h2><div id="agent-tools" class="table-list"></div></article>
+            <article class="solid-panel"><h2>Agent komutu</h2><textarea placeholder="Robotu incele, eksik baglantilari raporla"></textarea><button class="secondary">Dry-run planla</button></article>
+          </div>
         </section>
 
         <section data-panel="diagnostics" class="screen">
-          <article class="solid-panel">
-            <h1 id="diagnostics-title">Tanılama</h1>
-            <pre id="diagnostics-log"></pre>
+          <div class="section-head">
+            <div><p class="eyebrow">Support</p><h1>Tanilama</h1></div>
+            <button id="support-bundle-button" class="secondary">Support bundle hazirla</button>
+          </div>
+          <pre id="diagnostics-log"></pre>
+        </section>
+
+        <section data-panel="settings" class="screen">
+          <div class="section-head">
+            <div><p class="eyebrow">Guvenli ayarlar</p><h1>API key vault</h1></div>
+            <span id="secret-storage" class="pill amber">Runtime memory</span>
+          </div>
+          <article class="solid-panel warning">
+            <h2>Secret politikasi</h2>
+            <p>Key degerleri response, log ve support bundle icinde gosterilmez. Kalici surumde OS keychain kullanilacak.</p>
           </article>
+          <div id="api-key-grid" class="key-grid"></div>
         </section>
       </main>
 
       <aside class="inspector">
         <section class="solid-panel">
-          <h2 id="events-title">Olaylar</h2>
-          <div id="event-feed"></div>
+          <h2>SafetyGate</h2>
+          <ul id="blockers"></ul>
         </section>
         <section class="solid-panel">
-          <h2>Blockers</h2>
-          <ul id="blockers"></ul>
+          <h2 id="events-title">Olaylar</h2>
+          <div id="event-feed"></div>
         </section>
       </aside>
     </div>

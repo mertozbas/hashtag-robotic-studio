@@ -29,6 +29,9 @@ Current endpoints:
 - `GET /policies/compatibility`: policy feature mapping and rollout blockers.
 - `GET /agent/tools`: diagnostic, simulation, request, and physical tool scopes.
 - `GET /packaging/plan`: desktop shell and gateway packaging plan.
+- `GET /settings/api-keys`: API key provider status without secret values.
+- `POST /settings/api-keys/{provider}`: accepts a secret value and returns only
+  masked provider status.
 - `POST /support-bundle/export`: support bundle skeleton with secrets excluded.
 - `POST /stop`: stop event endpoint; no hardware disconnect is attempted in fake
   mode.

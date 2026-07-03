@@ -127,3 +127,19 @@ def test_gateway_serves_desktop_cockpit_under_app_path() -> None:
     assert response.status_code == 200
     assert "Hashtag Robotic Studio" in response.text
     assert 'data-screen="home"' in response.text
+
+
+def test_api_key_settings_accept_secrets_without_returning_values() -> None:
+    client = TestClient(create_app())
+
+    initial = client.get("/settings/api-keys").json()
+    updated = client.post("/settings/api-keys/huggingface", json={"value": "hf_1234567890abcdef"}).json()
+    after = client.get("/settings/api-keys").json()
+
+    assert initial["secrets_returned"] is False
+    assert updated["provider"]["provider"] == "huggingface"
+    assert updated["provider"]["connected"] is True
+    assert updated["provider"]["last_four"] == "cdef"
+    response_text = str(updated) + str(after)
+    assert "hf_1234567890abcdef" not in response_text
+    assert after["providers"][0]["secret_returned"] is False

@@ -6,7 +6,7 @@ from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 
-from packages.contracts import APP_NAME, APP_VERSION, OperationEvent, OperationRequest, RobotOperation, SafetyLevel
+from packages.contracts import APP_NAME, APP_VERSION, OperationEvent, OperationRequest, RobotOperation, SafetyLevel, SecretUpdateRequest
 from services.local_gateway.capabilities import get_fake_capability_inventory
 from services.local_gateway.events import EventStore
 from services.local_gateway.inventory import get_read_only_inventory
@@ -16,6 +16,7 @@ from services.local_gateway.studio import (
     get_operation_templates,
     get_packaging_plan,
     get_policy_compatibility,
+    list_api_key_providers,
     list_agent_tools,
     list_dataset_summaries,
 )
@@ -29,6 +30,8 @@ def create_app() -> FastAPI:
     app.state.events = events
     app.state.safety_gate = safety_gate
     app.state.runner = runner
+    app.state.secret_last_four = {}
+    app.state.secret_values = {}
 
     @app.get("/health")
     def health() -> dict:
@@ -67,6 +70,32 @@ def create_app() -> FastAPI:
     @app.get("/packaging/plan")
     def packaging_plan() -> dict:
         return get_packaging_plan().model_dump(mode="json")
+
+    @app.get("/settings/api-keys")
+    def api_key_settings() -> dict:
+        return {
+            "providers": [
+                provider.model_dump(mode="json")
+                for provider in list_api_key_providers(app.state.secret_last_four)
+            ],
+            "secrets_returned": False,
+            "storage": "runtime_memory_until_os_keychain_integration",
+        }
+
+    @app.post("/settings/api-keys/{provider}")
+    def update_api_key(provider: str, request: SecretUpdateRequest) -> dict:
+        secret = request.value.get_secret_value()
+        app.state.secret_values[provider] = secret
+        app.state.secret_last_four[provider] = secret[-4:] if len(secret) >= 4 else "set"
+        event = events.append(
+            OperationEvent(
+                source="settings",
+                type="api_key_updated",
+                payload={"provider": provider, "secret_returned": False},
+            )
+        )
+        status = next(item for item in list_api_key_providers(app.state.secret_last_four) if item.provider == provider)
+        return {"provider": status.model_dump(mode="json"), "event": event.model_dump(mode="json")}
 
     @app.post("/support-bundle/export")
     def support_bundle_export() -> dict:
