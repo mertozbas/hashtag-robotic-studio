@@ -19,6 +19,8 @@ Codex workflow:
 
 ```bash
 .memory/.venv/bin/python .memory/query.py "SO101 Studio safety gate" --top-k 5
+python3 tools/next_task.py
+python3 tools/context_pack.py --phase phase-1 --task "local gateway skeleton"
 ```
 
 If the memory environment is not installed yet:
@@ -29,3 +31,12 @@ python3 -m venv .memory/.venv
 .memory/.venv/bin/python .memory/ingest_all.py
 ```
 
+Autonomous development system:
+
+- [.codex/config.toml](.codex/config.toml): project-local Codex autonomy defaults.
+- [.codex/agents/](.codex/agents): specialist subagents for product, UX, backend, safety, SDK, QA, and memory.
+- [roadmap/phases.json](roadmap/phases.json): machine-readable phase plan.
+- [knowledge/](knowledge/00-index/README.md): local markdown vault for low-token project memory.
+- [docs/AUTONOMOUS_CODEX_WORKFLOW.md](docs/AUTONOMOUS_CODEX_WORKFLOW.md): one-input implementation loop.
+- [docs/EXPERT_AGENT_SYSTEM.md](docs/EXPERT_AGENT_SYSTEM.md): specialist agent roles.
+- [docs/TOKEN_EFFICIENCY.md](docs/TOKEN_EFFICIENCY.md): context and token budget rules.

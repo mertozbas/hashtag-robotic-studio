@@ -10,6 +10,7 @@ From `hashtag-robotic-studio/`:
 sed -n '1,220p' docs/PROJECT_STATE.md
 sed -n '1,220p' docs/CURRENT_SPRINT.md
 .memory/.venv/bin/python .memory/query.py "<task query>" --top-k 5
+python3 tools/next_task.py
 ```
 
 If memory is not installed:
@@ -70,9 +71,27 @@ Add source file under `memory/source/...`, then ingest:
 
 Update `.memory/seed_manifest.json` if the memory is foundational.
 
+## Autonomous Phase Work
+
+For a long implementation run:
+
+```text
+/goal
+Run the next phase from roadmap/phases.json. Use tools/context_pack.py first, implement, test, update docs/knowledge/memory, commit, and report the next task. No physical robot movement.
+```
+
+Useful commands:
+
+```bash
+python3 tools/next_task.py
+python3 tools/context_pack.py --phase phase-1 --task "local gateway skeleton"
+python3 tools/verify_phase.py --phase phase-1
+```
+
+Use `.codex/prompts/phase-autopilot.md` for a reusable prompt.
+
 ## Git Rules
 
 - Keep product-private docs and Codex system in this repo.
 - Do not commit local virtualenvs, Chroma DB, datasets, checkpoints, logs, videos, support bundles, or secrets.
 - Commit focused changes.
-

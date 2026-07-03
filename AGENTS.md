@@ -37,6 +37,15 @@ This file is loaded by Codex when working from `/Users/macmert/so101-test/hashta
 
 Do not dump the whole memory store into context. Use targeted retrieval.
 
+For implementation work, prefer the autonomous phase workflow:
+
+```bash
+python3 tools/next_task.py
+python3 tools/context_pack.py --phase phase-1 --task "<task>"
+```
+
+Then implement, verify, update docs/memory if needed, and commit. See `docs/AUTONOMOUS_CODEX_WORKFLOW.md`.
+
 ## Product Rules
 
 - The app must be local-first. Core robot workflows must work without a cloud server.
@@ -46,6 +55,16 @@ Do not dump the whole memory store into context. Use targeted retrieval.
 - Strands Robots is the orchestration layer for `Robot()`, simulation, policy abstraction, robot tools, mesh/ROS experiments, and agent-facing capabilities.
 - Prefer target SDK `strands-robots==0.4.1`, but verify in an isolated environment before upgrading any working lab environment.
 - The UI must expose capability detection instead of assuming an SDK feature exists.
+- This repo contains Codex development infrastructure for building the product. Files under `.codex/`, `knowledge/`, `roadmap/`, `.memory/`, and `memory/source/` are not product runtime features unless explicitly wired into the app later.
+
+## Autonomous Development Rules
+
+- Work through `roadmap/phases.json` when the user asks to continue or build the next part.
+- Use `tools/context_pack.py` before large implementation tasks to avoid reading the whole repo.
+- Use `/goal` for multi-step work with a clear definition of done.
+- Use project subagents under `.codex/agents/` only when the user asks for subagents/parallel review or when a task is broad enough to justify the extra token cost.
+- After meaningful work, update `knowledge/` for detailed notes and `memory/source/` for durable facts.
+- Keep `AGENTS.md` compact. Do not move long specs into this file.
 
 ## Hardware Safety Rules
 
@@ -67,6 +86,8 @@ Do not dump the whole memory store into context. Use targeted retrieval.
 - Prefer existing Strands/LeRobot APIs over custom wrappers unless a wrapper captures a repeated product workflow or safety contract.
 - Put risky operations behind explicit contracts and testable state machines.
 - Add focused tests or validation steps when changes affect contracts, safety, adapter behavior, or user-facing flows.
+- Run `python3 tools/verify_phase.py --phase <phase-id>` when a phase changes.
+- Prefer stdlib tooling for project automation unless a dependency clearly pays for itself.
 
 ## UI Rules
 
@@ -102,4 +123,3 @@ Example:
 ```
 
 Keep `docs/PROJECT_STATE.md` and `docs/CURRENT_SPRINT.md` short. Long details belong in `memory/source` and the vector DB.
-

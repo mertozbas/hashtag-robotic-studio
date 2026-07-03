@@ -32,3 +32,11 @@ Prepare Hashtag Robotic Studio as a Codex-ready product workspace: product spec,
 - The memory seed manifest can ingest the initial product decisions.
 - The folder is initialized as a git repository with the initial files committed.
 
+## Added Autonomous Workflow Layer
+
+- Added project-local Codex config for high-autonomy private workspace development.
+- Added specialist Codex subagents for product architecture, UX, frontend, local gateway, SDK integration, agent ops, safety, QA, and docs/memory.
+- Added `knowledge/` markdown vault for Obsidian-like project knowledge without depending on Obsidian.
+- Added `roadmap/phases.json` for phase/task sequencing.
+- Added `tools/context_pack.py`, `tools/next_task.py`, `tools/verify_phase.py`, and `tools/update_worklog.py`.
+- Added autonomous workflow, expert agent, token efficiency, and version planning docs.

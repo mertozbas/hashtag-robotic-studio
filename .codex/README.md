@@ -9,4 +9,12 @@ Use them when the task matches:
 - `.codex/skills/so101-studio-product/SKILL.md`
 - `.codex/skills/so101-robot-safety/SKILL.md`
 - `.codex/skills/so101-agent-ops/SKILL.md`
+- `.codex/skills/autonomous-workflow/SKILL.md`
+- `.codex/skills/studio-vault-memory/SKILL.md`
+- `.codex/skills/local-gateway/SKILL.md`
+- `.codex/skills/frontend-cockpit/SKILL.md`
+- `.codex/skills/test-qa/SKILL.md`
 
+Project subagents live in `.codex/agents/`.
+
+Reusable prompts live in `.codex/prompts/`.

@@ -1,0 +1,154 @@
+{
+  "project": "hashtag_robotic_studio",
+  "version_plan": "docs/VERSION_PLAN.md",
+  "phases": [
+    {
+      "id": "phase-0",
+      "title": "Codex product workspace",
+      "status": "complete",
+      "goal": "Create the product docs, safety model, memory, Codex instructions, and initial git repo.",
+      "acceptance": [
+        "AGENTS.md exists",
+        "Product, architecture, safety, agent, UI, SDK docs exist",
+        "Memory seed works",
+        "Initial commit exists"
+      ],
+      "verify": [
+        ["python3", "-m", "json.tool", ".memory/seed_manifest.json"],
+        ["python3", "-m", "py_compile", ".memory/common.py", ".memory/query.py", ".memory/ingest.py", ".memory/ingest_all.py"]
+      ]
+    },
+    {
+      "id": "phase-1",
+      "title": "Local gateway skeleton",
+      "status": "next",
+      "goal": "Create a non-actuating FastAPI local gateway with health, capability inventory, event stream, SafetyGate skeleton, and fake operation state machine.",
+      "acceptance": [
+        "No physical robot movement",
+        "Gateway starts locally",
+        "Health endpoint returns app/version/status",
+        "Capability inventory endpoint returns deterministic fake/local results",
+        "WebSocket or SSE event stream emits operation events",
+        "SafetyGate blocks physical operations by default",
+        "Unit tests cover state machine and SafetyGate"
+      ],
+      "verify": [
+        ["python3", "tools/verify_phase.py", "--phase", "phase-1"]
+      ]
+    },
+    {
+      "id": "phase-2",
+      "title": "Desktop cockpit prototype",
+      "status": "planned",
+      "goal": "Create the first Turkish/English glass cockpit UI shell connected to the local gateway.",
+      "acceptance": [
+        "Home, Devices, Calibration, Agent, Diagnostics placeholder screens exist",
+        "Turkish and English dictionaries exist",
+        "Critical controls are high contrast",
+        "UI reads health/capability/events from gateway",
+        "Responsive desktop layout verified"
+      ],
+      "verify": [
+        ["python3", "tools/verify_phase.py", "--phase", "phase-2"]
+      ]
+    },
+    {
+      "id": "phase-3",
+      "title": "Read-only SO101 integration",
+      "status": "planned",
+      "goal": "Add package, port, camera, calibration, and Strands sim smoke inventory without moving hardware.",
+      "acceptance": [
+        "No motor commands",
+        "Package versions visible",
+        "Port candidates visible",
+        "Camera candidates visible",
+        "Calibration presence visible",
+        "Strands sim smoke check is optional and non-actuating"
+      ],
+      "verify": [
+        ["python3", "tools/verify_phase.py", "--phase", "phase-3"]
+      ]
+    },
+    {
+      "id": "phase-4",
+      "title": "Controlled physical workflows",
+      "status": "planned",
+      "goal": "Add explicitly approved bounded physical workflows: observation-only real connection, teleop, recording, and emergency stop.",
+      "acceptance": [
+        "Physical motion requires explicit user unlock",
+        "Duration and speed/action limits enforced",
+        "Stop path tested with fake hardware",
+        "Operation logs persisted",
+        "No calibration overwrite by default"
+      ],
+      "verify": [
+        ["python3", "tools/verify_phase.py", "--phase", "phase-4"]
+      ]
+    },
+    {
+      "id": "phase-5",
+      "title": "Dataset Studio",
+      "status": "planned",
+      "goal": "Add LeRobot dataset inventory, episode preview, metadata validation, and quality checks.",
+      "acceptance": [
+        "Dataset list works",
+        "Episode metadata visible",
+        "Video preview path designed",
+        "Quality checks report blockers",
+        "Upload is explicit"
+      ],
+      "verify": [
+        ["python3", "tools/verify_phase.py", "--phase", "phase-5"]
+      ]
+    },
+    {
+      "id": "phase-6",
+      "title": "Policy Studio",
+      "status": "planned",
+      "goal": "Add local checkpoint and policy compatibility inspection before sim or real rollout.",
+      "acceptance": [
+        "Policy source selector designed",
+        "Expected features visible",
+        "Image/state/action mapping checked",
+        "Remote code trust is explicit",
+        "Real rollout blocked when mapping unknown"
+      ],
+      "verify": [
+        ["python3", "tools/verify_phase.py", "--phase", "phase-6"]
+      ]
+    },
+    {
+      "id": "phase-7",
+      "title": "Agent-driven robot operation",
+      "status": "planned",
+      "goal": "Expose Strands Agent tools for diagnosis, simulation, operation requests, and approved bounded physical sessions.",
+      "acceptance": [
+        "Tool taxonomy implemented",
+        "Tool-call stream visible",
+        "Agent permission scopes enforced",
+        "Physical tools expire with session",
+        "SafetyGate cannot be bypassed"
+      ],
+      "verify": [
+        ["python3", "tools/verify_phase.py", "--phase", "phase-7"]
+      ]
+    },
+    {
+      "id": "phase-8",
+      "title": "Packaging and customer install",
+      "status": "planned",
+      "goal": "Package desktop shell plus Python gateway for customer install.",
+      "acceptance": [
+        "Tauri/Electron decision recorded",
+        "Bundled gateway smoke test passes",
+        "Installer path documented",
+        "Support bundle export works",
+        "No secrets in package"
+      ],
+      "verify": [
+        ["python3", "tools/verify_phase.py", "--phase", "phase-8"]
+      ]
+    }
+  ]
+}
+

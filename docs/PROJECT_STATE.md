@@ -25,6 +25,20 @@ Create the product and Codex operating system for Hashtag Robotic Studio before 
 - Safety layer: deterministic `SafetyGate` and operation state machines.
 - Persistence: local config and SQLite-style app database.
 
+## Codex Development System
+
+- Project-local autonomy config: `.codex/config.toml`.
+- Specialist subagents: `.codex/agents/`.
+- Prompt templates: `.codex/prompts/`.
+- Obsidian-like local markdown vault: `knowledge/`.
+- Machine-readable phase plan: `roadmap/phases.json`.
+- Context and verification tools:
+  - `tools/context_pack.py`
+  - `tools/next_task.py`
+  - `tools/verify_phase.py`
+  - `tools/update_worklog.py`
+- Token strategy: keep durable rules in `AGENTS.md`, long details in docs/vault/memory, and use targeted context packs.
+
 ## SDK Direction
 
 - Target Strands Robots version for new work: `strands-robots==0.4.1`.
@@ -44,4 +58,3 @@ The parent lab folder contains useful prior work:
 - `../docs/DASHBOARD_MVP_PLAN.md`
 
 Do not treat those as product specs. Treat them as lab evidence and safety references.
-

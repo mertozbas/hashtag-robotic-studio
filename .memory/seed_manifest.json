@@ -71,7 +71,33 @@
       "area": "references",
       "importance": "medium",
       "tags": ["references", "strands", "lerobot", "scout"]
+    },
+    {
+      "type": "operation_playbook",
+      "title": "Autonomous Codex workflow",
+      "file": "memory/source/operations/autonomous_codex_workflow.md",
+      "status": "active",
+      "area": "codex",
+      "importance": "critical",
+      "tags": ["codex", "autonomous-workflow", "goal", "context-pack"]
+    },
+    {
+      "type": "architecture_decision",
+      "title": "Expert agent system",
+      "file": "memory/source/operations/expert_agent_system.md",
+      "status": "active",
+      "area": "codex",
+      "importance": "high",
+      "tags": ["subagents", "experts", "review", "workflow"]
+    },
+    {
+      "type": "operation_playbook",
+      "title": "Studio vault and token strategy",
+      "file": "memory/source/operations/studio_vault_token_strategy.md",
+      "status": "active",
+      "area": "memory",
+      "importance": "high",
+      "tags": ["vault", "memory", "token-efficiency", "knowledge"]
     }
   ]
 }
-
