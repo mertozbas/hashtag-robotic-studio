@@ -39,7 +39,7 @@
     {
       "id": "phase-2",
       "title": "Desktop cockpit prototype",
-      "status": "next",
+      "status": "complete",
       "goal": "Create the first Turkish/English glass cockpit UI shell connected to the local gateway.",
       "acceptance": [
         "Home, Devices, Calibration, Agent, Diagnostics placeholder screens exist",
@@ -55,7 +55,7 @@
     {
       "id": "phase-3",
       "title": "Read-only SO101 integration",
-      "status": "planned",
+      "status": "complete",
       "goal": "Add package, port, camera, calibration, and Strands sim smoke inventory without moving hardware.",
       "acceptance": [
         "No motor commands",
@@ -72,7 +72,7 @@
     {
       "id": "phase-4",
       "title": "Controlled physical workflows",
-      "status": "planned",
+      "status": "complete",
       "goal": "Add explicitly approved bounded physical workflows: observation-only real connection, teleop, recording, and emergency stop.",
       "acceptance": [
         "Physical motion requires explicit user unlock",
@@ -88,7 +88,7 @@
     {
       "id": "phase-5",
       "title": "Dataset Studio",
-      "status": "planned",
+      "status": "complete",
       "goal": "Add LeRobot dataset inventory, episode preview, metadata validation, and quality checks.",
       "acceptance": [
         "Dataset list works",
@@ -104,7 +104,7 @@
     {
       "id": "phase-6",
       "title": "Policy Studio",
-      "status": "planned",
+      "status": "complete",
       "goal": "Add local checkpoint and policy compatibility inspection before sim or real rollout.",
       "acceptance": [
         "Policy source selector designed",
@@ -120,7 +120,7 @@
     {
       "id": "phase-7",
       "title": "Agent-driven robot operation",
-      "status": "planned",
+      "status": "complete",
       "goal": "Expose Strands Agent tools for diagnosis, simulation, operation requests, and approved bounded physical sessions.",
       "acceptance": [
         "Tool taxonomy implemented",
@@ -136,7 +136,7 @@
     {
       "id": "phase-8",
       "title": "Packaging and customer install",
-      "status": "planned",
+      "status": "complete",
       "goal": "Package desktop shell plus Python gateway for customer install.",
       "acceptance": [
         "Tauri/Electron decision recorded",

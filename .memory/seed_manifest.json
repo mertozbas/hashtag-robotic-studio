@@ -107,6 +107,15 @@
       "area": "backend",
       "importance": "high",
       "tags": ["phase-1", "local-gateway", "fastapi", "safety-gate", "event-stream"]
+    },
+    {
+      "type": "implementation_note",
+      "title": "Phase 2-8 product skeleton",
+      "file": "memory/source/operations/phase_2_8_product_skeleton.md",
+      "status": "active",
+      "area": "roadmap",
+      "importance": "high",
+      "tags": ["phase-2", "phase-3", "phase-4", "phase-5", "phase-6", "phase-7", "phase-8"]
     }
   ]
 }

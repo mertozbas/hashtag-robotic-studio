@@ -26,7 +26,46 @@ PHASE_1_COMPILE_CHECK = [
     "services/local_gateway/events.py",
     "services/local_gateway/operations.py",
     "services/local_gateway/safety.py",
+    "services/local_gateway/inventory.py",
+    "services/local_gateway/studio.py",
 ]
+
+PHASE_REQUIREMENTS = {
+    "phase-2": [
+        "apps/desktop/index.html",
+        "apps/desktop/styles.css",
+        "apps/desktop/app.js",
+        "tests/test_desktop_static.py",
+    ],
+    "phase-3": [
+        "services/local_gateway/inventory.py",
+        "tests/test_gateway_api.py",
+    ],
+    "phase-4": [
+        "services/local_gateway/safety.py",
+        "services/local_gateway/studio.py",
+        "tests/test_safety_gate.py",
+    ],
+    "phase-5": [
+        "services/local_gateway/studio.py",
+        "tests/test_gateway_api.py",
+    ],
+    "phase-6": [
+        "services/local_gateway/studio.py",
+        "packages/contracts/models.py",
+        "tests/test_gateway_api.py",
+    ],
+    "phase-7": [
+        "services/local_gateway/studio.py",
+        "services/local_gateway/app.py",
+        "tests/test_gateway_api.py",
+    ],
+    "phase-8": [
+        "services/local_gateway/studio.py",
+        "apps/desktop/README.md",
+        "tests/test_gateway_api.py",
+    ],
+}
 
 
 def run(command: list[str]) -> bool:
@@ -85,6 +124,14 @@ def main() -> None:
             "tests/test_safety_gate.py",
         ]
         for rel in required:
+            exists = (ROOT / rel).exists()
+            print(f"{'OK' if exists else 'MISSING'} {rel}")
+            ok = exists and ok
+        ok = run(PHASE_1_COMPILE_CHECK) and ok
+        ok = run(["python3", "-m", "pytest"]) and ok
+
+    if args.phase in PHASE_REQUIREMENTS:
+        for rel in PHASE_REQUIREMENTS[args.phase]:
             exists = (ROOT / rel).exists()
             print(f"{'OK' if exists else 'MISSING'} {rel}")
             ok = exists and ok

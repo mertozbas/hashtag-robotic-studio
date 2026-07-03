@@ -1,13 +1,24 @@
 from __future__ import annotations
 
+from pathlib import Path
+
 from fastapi import FastAPI
 from fastapi.responses import StreamingResponse
+from fastapi.staticfiles import StaticFiles
 
-from packages.contracts import APP_NAME, APP_VERSION, OperationEvent, OperationRequest, RobotOperation
+from packages.contracts import APP_NAME, APP_VERSION, OperationEvent, OperationRequest, RobotOperation, SafetyLevel
 from services.local_gateway.capabilities import get_fake_capability_inventory
 from services.local_gateway.events import EventStore
+from services.local_gateway.inventory import get_read_only_inventory
 from services.local_gateway.operations import FakeOperationRunner
 from services.local_gateway.safety import SafetyGate
+from services.local_gateway.studio import (
+    get_operation_templates,
+    get_packaging_plan,
+    get_policy_compatibility,
+    list_agent_tools,
+    list_dataset_summaries,
+)
 
 
 def create_app() -> FastAPI:
@@ -33,6 +44,53 @@ def create_app() -> FastAPI:
     def capabilities() -> dict:
         return get_fake_capability_inventory().model_dump(mode="json")
 
+    @app.get("/inventory")
+    def inventory() -> dict:
+        return get_read_only_inventory().model_dump(mode="json")
+
+    @app.get("/operations/templates")
+    def operation_templates() -> dict:
+        return {"templates": get_operation_templates(), "physical_motion_requires_unlock": True}
+
+    @app.get("/datasets")
+    def datasets() -> dict:
+        return {"datasets": [dataset.model_dump(mode="json") for dataset in list_dataset_summaries()]}
+
+    @app.get("/policies/compatibility")
+    def policy_compatibility() -> dict:
+        return get_policy_compatibility().model_dump(mode="json")
+
+    @app.get("/agent/tools")
+    def agent_tools() -> dict:
+        return {"tools": [tool.model_dump(mode="json") for tool in list_agent_tools()]}
+
+    @app.get("/packaging/plan")
+    def packaging_plan() -> dict:
+        return get_packaging_plan().model_dump(mode="json")
+
+    @app.post("/support-bundle/export")
+    def support_bundle_export() -> dict:
+        event = events.append(
+            OperationEvent(
+                source="support_bundle",
+                type="support_bundle_prepared",
+                payload={"secrets_included": False, "large_media_included": False},
+            )
+        )
+        return {"ready": True, "secrets_included": False, "event": event.model_dump(mode="json")}
+
+    @app.post("/stop")
+    def stop() -> dict:
+        event = events.append(
+            OperationEvent(
+                level="warning",
+                source="safety",
+                type="stop_requested",
+                payload={"physical_motion_enabled": False, "hardware_disconnect_required": False},
+            )
+        )
+        return {"accepted": True, "physical_motion_enabled": False, "event": event.model_dump(mode="json")}
+
     @app.get("/events")
     def event_stream(limit: int = 50) -> StreamingResponse:
         if not events.list(limit=1):
@@ -54,6 +112,45 @@ def create_app() -> FastAPI:
             "safety": safety.model_dump(mode="json"),
             "events": [event.model_dump(mode="json") for event in events.list(limit=20) if event.operation_id == operation.id],
         }
+
+    @app.post("/operations/request")
+    def request_operation(request: OperationRequest) -> dict:
+        operation = RobotOperation.from_request(request)
+        safety = safety_gate.evaluate(operation)
+        events.append(
+            OperationEvent(
+                operation_id=operation.id,
+                source="safety_gate",
+                type="operation_request_blocked" if not safety.allowed else "operation_request_ready",
+                payload=safety.model_dump(mode="json"),
+            )
+        )
+        return {"operation": operation.model_dump(mode="json"), "safety": safety.model_dump(mode="json")}
+
+    @app.post("/operations/real-rollout/preflight")
+    def real_rollout_preflight() -> dict:
+        request = OperationRequest(
+            type="run_policy_real",
+            mode="real",
+            requested_by="user",
+            safety_level=SafetyLevel.PHYSICAL_MOTION,
+            required_inputs=[
+                "follower_port",
+                "camera_config",
+                "calibration_id",
+                "policy_checkpoint",
+                "feature_mapping",
+                "duration_limit",
+                "emergency_stop",
+            ],
+        )
+        operation = RobotOperation.from_request(request)
+        safety = safety_gate.evaluate(operation)
+        return {"operation": operation.model_dump(mode="json"), "safety": safety.model_dump(mode="json")}
+
+    desktop_dir = Path(__file__).resolve().parents[2] / "apps" / "desktop"
+    if desktop_dir.exists():
+        app.mount("/app", StaticFiles(directory=desktop_dir, html=True), name="desktop")
 
     return app
 

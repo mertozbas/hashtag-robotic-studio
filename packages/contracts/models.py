@@ -114,3 +114,93 @@ class OperationEvent(BaseModel):
     source: str
     type: str
     payload: dict[str, Any] = Field(default_factory=dict)
+
+
+class PackageStatus(BaseModel):
+    name: str
+    installed: bool
+    version: str | None = None
+    source: str = "python_import"
+
+
+class PortCandidate(BaseModel):
+    path: str
+    role_hint: str = "unknown"
+    confidence: str = "candidate"
+    safe_to_use: bool = False
+
+
+class CameraCandidate(BaseModel):
+    id: str
+    label: str
+    available: bool
+    safe_to_open: bool = False
+
+
+class CalibrationStatus(BaseModel):
+    robot_id: str
+    role: str
+    present: bool
+    path: str | None = None
+    write_allowed: bool = False
+
+
+class DeviceInventory(BaseModel):
+    packages: list[PackageStatus]
+    ports: list[PortCandidate]
+    cameras: list[CameraCandidate]
+    calibrations: list[CalibrationStatus]
+    strands_sim_smoke: dict[str, Any]
+    motor_commands_sent: bool = False
+
+
+class FeatureMapping(BaseModel):
+    robot: str = "so101"
+    camera_keys: dict[str, str] = Field(default_factory=dict)
+    state_features: list[str] = Field(default_factory=list)
+    action_dimension: int | None = None
+    unit_status: str = "blocked"
+    blockers: list[str] = Field(default_factory=list)
+
+
+class DatasetSummary(BaseModel):
+    id: str
+    path: str
+    episodes: int
+    fps: int | None = None
+    camera_keys: list[str] = Field(default_factory=list)
+    blockers: list[str] = Field(default_factory=list)
+    upload_explicit: bool = True
+    preview_available: bool = False
+
+
+class PolicyCompatibilityReport(BaseModel):
+    policy_id: str
+    source: str
+    expected_image_keys: list[str] = Field(default_factory=list)
+    expected_state_features: list[str] = Field(default_factory=list)
+    expected_action_dimension: int | None = None
+    remote_code_trust_required: bool = False
+    remote_code_trusted: bool = False
+    mapping: FeatureMapping = Field(default_factory=FeatureMapping)
+    real_rollout_allowed: bool = False
+    blockers: list[str] = Field(default_factory=list)
+
+
+class AgentTool(BaseModel):
+    name: str
+    category: str
+    safety_level: SafetyLevel
+    enabled: bool
+    permission_scope: str
+    expires_with_session: bool = True
+    blockers: list[str] = Field(default_factory=list)
+
+
+class PackagingPlan(BaseModel):
+    desktop_shell: str
+    gateway_entrypoint: str
+    installer_status: str
+    support_bundle_export: bool
+    secrets_in_package: bool = False
+    blockers: list[str] = Field(default_factory=list)

@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hashtag Robotic Studio</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <strong>Hashtag Robotic Studio</strong>
+          <span id="gateway-status">Gateway bekleniyor</span>
+        </div>
+        <div class="top-actions">
+          <button id="language-toggle" class="icon-button" title="Dil değiştir">TR</button>
+          <button class="motor-lock critical amber" title="Motor kilidi" disabled>Kilitli</button>
+          <button class="stop-button critical stop" title="Acil durdur">STOP</button>
+        </div>
+      </header>
+
+      <aside class="sidebar">
+        <button data-screen="home" class="nav active">Başlangıç</button>
+        <button data-screen="devices" class="nav">Cihazlar</button>
+        <button data-screen="calibration" class="nav">Kalibrasyon</button>
+        <button data-screen="agent" class="nav">Agent</button>
+        <button data-screen="diagnostics" class="nav">Tanılama</button>
+      </aside>
+
+      <main class="workspace">
+        <section data-panel="home" class="screen active">
+          <div class="hud-grid">
+            <article class="glass-panel">
+              <h1 id="home-title">Operasyon durumu</h1>
+              <p id="readiness">Yerel fake mod, fiziksel hareket kapalı.</p>
+            </article>
+            <article class="solid-panel warning">
+              <h2>SafetyGate</h2>
+              <p id="safety-summary">Fiziksel hareket için unlock, süre limiti ve e-stop gerekli.</p>
+            </article>
+          </div>
+        </section>
+
+        <section data-panel="devices" class="screen">
+          <article class="solid-panel">
+            <h1 id="devices-title">Cihazlar</h1>
+            <div id="device-list" class="table-list"></div>
+          </article>
+        </section>
+
+        <section data-panel="calibration" class="screen">
+          <article class="solid-panel">
+            <h1 id="calibration-title">Kalibrasyon</h1>
+            <button class="calibration-write critical stop" disabled>Kalibrasyon yazma engelli</button>
+            <div id="calibration-list" class="table-list"></div>
+          </article>
+        </section>
+
+        <section data-panel="agent" class="screen">
+          <article class="solid-panel">
+            <h1 id="agent-title">Agent cockpit</h1>
+            <div id="agent-tools" class="table-list"></div>
+          </article>
+          <article class="solid-panel warning real-rollout">
+            <h2>Real rollout</h2>
+            <p id="rollout-summary">Mapping bilinmeden gerçek rollout engelli.</p>
+          </article>
+        </section>
+
+        <section data-panel="diagnostics" class="screen">
+          <article class="solid-panel">
+            <h1 id="diagnostics-title">Tanılama</h1>
+            <pre id="diagnostics-log"></pre>
+          </article>
+        </section>
+      </main>
+
+      <aside class="inspector">
+        <section class="solid-panel">
+          <h2 id="events-title">Olaylar</h2>
+          <div id="event-feed"></div>
+        </section>
+        <section class="solid-panel">
+          <h2>Blockers</h2>
+          <ul id="blockers"></ul>
+        </section>
+      </aside>
+    </div>
+    <script src="./app.js"></script>
+  </body>
+</html>

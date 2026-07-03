@@ -39,7 +39,7 @@ No real motion.
 
 ## Phase 2: Web Cockpit Prototype
 
-Status: next.
+Status: complete.
 
 Goal: prove the UI information architecture.
 
@@ -59,6 +59,8 @@ No real motion.
 
 ## Phase 3: SO101 Read-only Integration
 
+Status: complete as a no-motion skeleton.
+
 Goal: connect to local SO101 environment safely.
 
 Build:
@@ -75,6 +77,8 @@ No motor commands.
 
 ## Phase 4: Controlled Physical Workflows
 
+Status: complete as operation contracts and fake safety gates only.
+
 Goal: first useful customer workflows.
 
 Build:
@@ -87,9 +91,12 @@ Build:
 - emergency stop path
 - operation log
 
-Requires explicit hardware permission during development.
+Requires explicit hardware permission during development. No hardware movement
+was performed while completing the skeleton.
 
 ## Phase 5: Dataset Studio
+
+Status: complete as inventory and validation skeleton.
 
 Goal: make LeRobot dataset work visible and inspectable.
 
@@ -106,6 +113,8 @@ Build:
 
 ## Phase 6: Policy Studio
 
+Status: complete as compatibility-report skeleton.
+
 Goal: prevent unsafe policy rollout through compatibility gates.
 
 Build:
@@ -119,6 +128,8 @@ Build:
 - real rollout preflight
 
 ## Phase 7: Agent-driven Robot Operation
+
+Status: complete as tool taxonomy and permission-scope skeleton.
 
 Goal: product differentiator.
 
@@ -135,6 +146,8 @@ Build:
 - agent permission scopes
 
 ## Phase 8: Packaging
+
+Status: complete as packaging-plan skeleton.
 
 Goal: customer install.
 

@@ -11,11 +11,16 @@ Current phase-1 contracts live in `models.py`:
 - `OperationRequest`
 - `CapabilityInventory`
 - operation mode, status, requester, and safety-level enums
+- `DeviceInventory`
+- `DatasetSummary`
+- `PolicyCompatibilityReport`
+- `FeatureMapping`
+- `AgentTool`
+- `PackagingPlan`
 
 These contracts are the main defense against future backend rewrites.
 
-Not implemented yet:
-
-- `FeatureMapping`
-- `DatasetSummary`
-- `PolicyCompatibilityReport`
+Contracts are implemented as Pydantic models for the local gateway and tests.
+They are intentionally conservative: real physical rollout remains blocked
+until feature mapping, calibration, ports, duration, emergency stop, and user
+unlock are all known.

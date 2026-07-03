@@ -4,8 +4,9 @@ Last updated: 2026-07-04
 
 ## Current Goal
 
-Build the product in roadmap phases. Phase 1 local gateway skeleton is complete;
-phase 2 desktop cockpit prototype is next.
+Complete roadmap skeleton is implemented through phase 8 without physical robot
+movement. Next work is depth: replace fake/read-only adapters with isolated
+SDK smoke checks, then customer packaging spike.
 
 ## Product Snapshot
 
@@ -38,6 +39,20 @@ phase 2 desktop cockpit prototype is next.
   testable operation state machine.
 - Physical observation, physical motion, calibration write, and destructive
   data paths are blocked by default in the phase-1 gateway.
+- Phase 2 adds a static Turkish/English desktop cockpit prototype under
+  `apps/desktop/` with Home, Devices, Calibration, Agent, and Diagnostics views.
+- Phase 3 adds read-only package, port, camera, calibration, and optional sim
+  inventory under `GET /inventory`.
+- Phase 4 adds controlled physical workflow templates, stop endpoint, and
+  SafetyGate preflight blocks for motion and calibration-write paths.
+- Phase 5 adds dataset inventory and support for explicit upload/export
+  semantics without deleting or uploading data.
+- Phase 6 adds policy compatibility reporting with feature mapping blockers,
+  explicit remote-code trust, and real-rollout denial by default.
+- Phase 7 adds agent tool taxonomy and permission scopes with physical tools
+  disabled until a bounded session exists.
+- Phase 8 records the packaging plan surface and support bundle export skeleton
+  with secrets excluded by default.
 
 ## Codex Development System
 

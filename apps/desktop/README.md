@@ -1,16 +1,40 @@
-# Desktop App Placeholder
+# Desktop Cockpit Prototype
 
-Future home for the customer-facing desktop shell.
+Phase-2 desktop cockpit prototype is a static, dependency-light shell that can
+be served by any local file server while the Tauri/Electron packaging spike is
+pending.
 
-Current decision:
+Run with the gateway:
 
-- UI is Turkish-first with English support.
-- Architecture should keep UI independent from robot SDK changes.
-- Desktop shell is not decided yet: compare Tauri and Electron with a Python gateway packaging spike.
+```bash
+uvicorn services.local_gateway.app:app --reload
+```
 
-Do not start implementation here before reading:
+Open `http://127.0.0.1:8000/app/`.
 
-- `../../docs/PRODUCT_SPEC.md`
-- `../../docs/UI_UX_SYSTEM.md`
-- `../../docs/ARCHITECTURE.md`
+Current surfaces:
 
+- Home / `Başlangıç`
+- Devices / `Cihazlar`
+- Calibration / `Kalibrasyon`
+- Agent
+- Diagnostics / `Tanılama`
+
+Gateway reads:
+
+- `GET /health`
+- `GET /capabilities`
+- `GET /inventory`
+- `GET /datasets`
+- `GET /policies/compatibility`
+- `GET /agent/tools`
+- `GET /events` through SSE
+
+Safety stance:
+
+- STOP, motor lock, calibration write, and real rollout controls are visible,
+  solid, high contrast, and blocked by default.
+- No UI action talks directly to LeRobot, Strands Robots, serial ports, cameras,
+  datasets, checkpoints, or hardware.
+- The shell choice remains open; phase-8 records Tauri preferred with Electron
+  fallback until the packaging spike is run.
