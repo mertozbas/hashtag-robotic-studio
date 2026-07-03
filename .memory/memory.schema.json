@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Hashtag Robotic Studio Memory",
+  "type": "object",
+  "required": ["type", "title", "content", "status", "created_at"],
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "architecture_decision",
+        "product_decision",
+        "sdk_decision",
+        "ui_decision",
+        "agent_operation_rule",
+        "hardware_profile",
+        "calibration_note",
+        "dataset_note",
+        "training_run",
+        "policy_decision",
+        "safety_rule",
+        "operation_playbook",
+        "implementation_note",
+        "bug_fix",
+        "performance_note",
+        "rejected_idea",
+        "open_question",
+        "session_summary"
+      ]
+    },
+    "project": {
+      "type": "string",
+      "default": "hashtag_robotic_studio"
+    },
+    "area": {
+      "type": "string"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": ["active", "deprecated", "superseded", "experimental", "rejected"]
+    },
+    "importance": {
+      "type": "string",
+      "enum": ["low", "medium", "high", "critical"]
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "source_file": {
+      "type": "string"
+    }
+  }
+}

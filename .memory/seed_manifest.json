@@ -1,0 +1,77 @@
+{
+  "items": [
+    {
+      "type": "product_decision",
+      "title": "Hashtag Robotic Studio product direction",
+      "file": "memory/source/decisions/product_direction.md",
+      "status": "active",
+      "area": "product",
+      "importance": "critical",
+      "tags": ["so101", "studio", "desktop", "customer-product"]
+    },
+    {
+      "type": "product_decision",
+      "title": "Local-first and no Coolify decision",
+      "file": "memory/source/decisions/local_first_no_coolify.md",
+      "status": "active",
+      "area": "architecture",
+      "importance": "critical",
+      "tags": ["local-first", "coolify", "cloud", "desktop"]
+    },
+    {
+      "type": "agent_operation_rule",
+      "title": "Agent may operate robot through safe contracts",
+      "file": "memory/source/decisions/agent_robot_control.md",
+      "status": "active",
+      "area": "agent",
+      "importance": "critical",
+      "tags": ["agent", "strands", "robot-control", "safety"]
+    },
+    {
+      "type": "safety_rule",
+      "title": "Hashtag Robotic Studio safety model",
+      "file": "memory/source/safety/safety_model.md",
+      "status": "active",
+      "area": "safety",
+      "importance": "critical",
+      "tags": ["safety", "so101", "physical-motion", "estop"]
+    },
+    {
+      "type": "ui_decision",
+      "title": "Glass cockpit UI direction",
+      "file": "memory/source/ui/glass_cockpit_ui.md",
+      "status": "active",
+      "area": "ui",
+      "importance": "high",
+      "tags": ["ui", "glassmorphism", "cockpit", "turkish"]
+    },
+    {
+      "type": "sdk_decision",
+      "title": "Strands Robots 0.4.1 target strategy",
+      "file": "memory/source/sdk/strands_robots_041_strategy.md",
+      "status": "active",
+      "area": "sdk",
+      "importance": "high",
+      "tags": ["strands-robots", "0.4.1", "lerobot", "upgrade"]
+    },
+    {
+      "type": "operation_playbook",
+      "title": "Codex workspace setup",
+      "file": "memory/source/operations/codex_workspace_setup.md",
+      "status": "active",
+      "area": "codex",
+      "importance": "high",
+      "tags": ["codex", "memory", "workflow"]
+    },
+    {
+      "type": "implementation_note",
+      "title": "Reference index for Studio planning",
+      "file": "memory/source/references/reference_index.md",
+      "status": "active",
+      "area": "references",
+      "importance": "medium",
+      "tags": ["references", "strands", "lerobot", "scout"]
+    }
+  ]
+}
+

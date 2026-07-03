@@ -1,0 +1,41 @@
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Node/frontend
+node_modules/
+dist/
+build/
+.next/
+.turbo/
+
+# Local memory runtime
+.memory/.venv/
+.memory/chroma/
+
+# Robot/runtime artifacts
+outputs/
+datasets/
+checkpoints/
+logs/
+support_bundles/
+*.mp4
+*.mkv
+*.parquet
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+

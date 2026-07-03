@@ -1,0 +1,6 @@
+# Target SDK stack for future isolated Hashtag Robotic Studio smoke tests.
+# Do not install into an active lab environment without reading docs/SDK_STRATEGY.md.
+
+strands-agents==1.45.0
+strands-robots[sim-mujoco,lerobot]==0.4.1
+
