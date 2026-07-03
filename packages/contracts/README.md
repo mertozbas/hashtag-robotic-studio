@@ -1,16 +1,21 @@
-# Contracts Placeholder
+# Contracts
 
-Future home for shared schema contracts between the UI, local gateway, agent runtime, and tests.
+Shared schema contracts between the UI, local gateway, agent runtime, and tests.
 
-Initial contract targets:
+Current phase-1 contracts live in `models.py`:
 
 - `RobotCapability`
 - `RobotOperation`
 - `SafetyGateResult`
 - `RobotEvent`
-- `FeatureMapping`
-- `DatasetSummary`
-- `PolicyCompatibilityReport`
+- `OperationRequest`
+- `CapabilityInventory`
+- operation mode, status, requester, and safety-level enums
 
 These contracts are the main defense against future backend rewrites.
 
+Not implemented yet:
+
+- `FeatureMapping`
+- `DatasetSummary`
+- `PolicyCompatibilityReport`

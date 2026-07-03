@@ -4,7 +4,8 @@ Last updated: 2026-07-04
 
 ## Current Goal
 
-Create the product and Codex operating system for Hashtag Robotic Studio before implementation begins.
+Build the product in roadmap phases. Phase 1 local gateway skeleton is complete;
+phase 2 desktop cockpit prototype is next.
 
 ## Product Snapshot
 
@@ -19,11 +20,24 @@ Create the product and Codex operating system for Hashtag Robotic Studio before 
 
 - Desktop app shell: likely Tauri or Electron, to be decided after packaging spike.
 - Frontend: React-style component app with i18n dictionaries.
-- Local gateway: Python FastAPI service with REST and WebSocket event streams.
+- Local gateway: Python FastAPI service with REST and SSE/WebSocket event streams.
 - Robot layer: adapter contracts over LeRobot and Strands Robots.
 - Agent layer: Strands Agents with tool-call streaming and operation contracts.
 - Safety layer: deterministic `SafetyGate` and operation state machines.
 - Persistence: local config and SQLite-style app database.
+
+## Implemented Product Skeleton
+
+- Phase 1 adds a non-actuating FastAPI gateway package under
+  `services/local_gateway/`.
+- `GET /health` returns app/version/status and explicitly reports physical
+  motion disabled.
+- `GET /capabilities` returns deterministic fake/local capability inventory.
+- `GET /events` replays operation events as SSE.
+- `POST /operations/fake` runs fake operations through `SafetyGate` and a
+  testable operation state machine.
+- Physical observation, physical motion, calibration write, and destructive
+  data paths are blocked by default in the phase-1 gateway.
 
 ## Codex Development System
 

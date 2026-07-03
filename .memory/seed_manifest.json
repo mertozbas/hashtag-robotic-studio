@@ -98,6 +98,15 @@
       "area": "memory",
       "importance": "high",
       "tags": ["vault", "memory", "token-efficiency", "knowledge"]
+    },
+    {
+      "type": "implementation_note",
+      "title": "Phase 1 local gateway skeleton",
+      "file": "memory/source/operations/phase_1_local_gateway.md",
+      "status": "active",
+      "area": "backend",
+      "importance": "high",
+      "tags": ["phase-1", "local-gateway", "fastapi", "safety-gate", "event-stream"]
     }
   ]
 }

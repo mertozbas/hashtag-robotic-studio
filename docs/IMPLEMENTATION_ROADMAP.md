@@ -18,6 +18,8 @@ Status: current.
 
 ## Phase 1: Local Gateway Prototype
 
+Status: complete.
+
 Goal: prove the backend contract before building the full desktop app.
 
 Build:
@@ -36,6 +38,8 @@ Build:
 No real motion.
 
 ## Phase 2: Web Cockpit Prototype
+
+Status: next.
 
 Goal: prove the UI information architecture.
 
@@ -142,4 +146,3 @@ Build:
 - Windows/macOS/Linux install tests
 - update path
 - support bundle export
-

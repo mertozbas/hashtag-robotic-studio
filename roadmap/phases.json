@@ -21,7 +21,7 @@
     {
       "id": "phase-1",
       "title": "Local gateway skeleton",
-      "status": "next",
+      "status": "complete",
       "goal": "Create a non-actuating FastAPI local gateway with health, capability inventory, event stream, SafetyGate skeleton, and fake operation state machine.",
       "acceptance": [
         "No physical robot movement",
@@ -39,7 +39,7 @@
     {
       "id": "phase-2",
       "title": "Desktop cockpit prototype",
-      "status": "planned",
+      "status": "next",
       "goal": "Create the first Turkish/English glass cockpit UI shell connected to the local gateway.",
       "acceptance": [
         "Home, Devices, Calibration, Agent, Diagnostics placeholder screens exist",
@@ -151,4 +151,3 @@
     }
   ]
 }
-

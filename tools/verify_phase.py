@@ -15,6 +15,19 @@ BASE_CHECKS = [
     ["python3", "-m", "py_compile", ".memory/common.py", ".memory/query.py", ".memory/ingest.py", ".memory/ingest_all.py"],
 ]
 
+PHASE_1_COMPILE_CHECK = [
+    "python3",
+    "-m",
+    "py_compile",
+    "packages/contracts/__init__.py",
+    "packages/contracts/models.py",
+    "services/local_gateway/app.py",
+    "services/local_gateway/capabilities.py",
+    "services/local_gateway/events.py",
+    "services/local_gateway/operations.py",
+    "services/local_gateway/safety.py",
+]
+
 
 def run(command: list[str]) -> bool:
     print("$ " + " ".join(command))
@@ -58,6 +71,26 @@ def main() -> None:
             print(f"{'OK' if exists else 'MISSING'} {rel}")
             ok = exists and ok
 
+    if args.phase == "phase-1":
+        required = [
+            "pyproject.toml",
+            "packages/contracts/models.py",
+            "services/local_gateway/app.py",
+            "services/local_gateway/capabilities.py",
+            "services/local_gateway/events.py",
+            "services/local_gateway/operations.py",
+            "services/local_gateway/safety.py",
+            "tests/test_gateway_api.py",
+            "tests/test_operation_state_machine.py",
+            "tests/test_safety_gate.py",
+        ]
+        for rel in required:
+            exists = (ROOT / rel).exists()
+            print(f"{'OK' if exists else 'MISSING'} {rel}")
+            ok = exists and ok
+        ok = run(PHASE_1_COMPILE_CHECK) and ok
+        ok = run(["python3", "-m", "pytest"]) and ok
+
     if not ok:
         raise SystemExit(1)
     print("Verification passed.")
@@ -65,4 +98,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
