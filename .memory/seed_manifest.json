@@ -125,6 +125,15 @@
       "area": "frontend",
       "importance": "high",
       "tags": ["dashboard", "api-keys", "huggingface", "so101", "safety"]
+    },
+    {
+      "type": "implementation_note",
+      "title": "GitHub Pages tutorial and UI contract tests",
+      "file": "memory/source/operations/tutorial_and_ui_test_pass.md",
+      "status": "active",
+      "area": "docs",
+      "importance": "high",
+      "tags": ["tutorial", "github-pages", "ui-tests", "so101", "huggingface"]
     }
   ]
 }
