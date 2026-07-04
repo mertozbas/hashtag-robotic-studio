@@ -21,6 +21,7 @@ def test_navigation_screens_have_matching_panels_and_required_runtime_targets() 
 
     assert screens == [
         "home",
+        "guide",
         "devices",
         "calibration",
         "live",
@@ -37,6 +38,8 @@ def test_navigation_screens_have_matching_panels_and_required_runtime_targets() 
         "gateway-status",
         "readiness-score",
         "preflight-list",
+        "guide-checklist",
+        "guide-pages-link",
         "port-list",
         "camera-list",
         "calibration-list",
@@ -114,6 +117,8 @@ def test_turkish_first_cockpit_copy_exposes_training_and_safety_surfaces() -> No
 
     for text in [
         "Robot kollarini baglamaya hazir cockpit",
+        "SO101 + Studio operasyon rehberi",
+        "Fiziksel hareket kuralı",
         "Fiziksel hareket kilidi",
         "Hugging Face egitim ayari",
         "Policy compatibility",

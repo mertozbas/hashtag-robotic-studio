@@ -15,6 +15,7 @@ Open `http://127.0.0.1:8000/app/`.
 Current surfaces:
 
 - Home / `Başlangıç`
+- Guide / `Kılavuz`
 - Devices / `Cihazlar`
 - Calibration / `Kalibrasyon`
 - Live Control / `Canlı Kontrol`
@@ -45,5 +46,7 @@ Safety stance:
   datasets, checkpoints, or hardware.
 - API key values are submitted to the local gateway but not rendered back,
   included in diagnostics, or included in support bundle payloads.
+- The in-app `Kılavuz` screen mirrors the customer guide and links to the
+  GitHub Pages tutorial path prepared under `docs/tutorials/`.
 - The shell choice remains open; phase-8 records Tauri preferred with Electron
   fallback until the packaging spike is run.

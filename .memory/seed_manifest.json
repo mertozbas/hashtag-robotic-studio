@@ -134,6 +134,15 @@
       "area": "docs",
       "importance": "high",
       "tags": ["tutorial", "github-pages", "ui-tests", "so101", "huggingface"]
+    },
+    {
+      "type": "implementation_note",
+      "title": "In-app guide and GitHub Pages publish prep",
+      "file": "memory/source/operations/in_app_guide_pages_publish_prep.md",
+      "status": "active",
+      "area": "docs",
+      "importance": "high",
+      "tags": ["guide", "github-pages", "desktop-ui", "publish", "so101"]
     }
   ]
 }

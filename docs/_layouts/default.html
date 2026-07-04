@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="{{ page.lang | default: site.lang | default: 'tr' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <link rel="stylesheet" href="{{ '/assets/tutorial.css' | relative_url }}">
+  </head>
+  <body>
+    <header class="site-shell">
+      <a class="brand" href="{{ '/' | relative_url }}">
+        <span class="brand-mark">HS</span>
+        <span>Hashtag Robotic Studio</span>
+      </a>
+      <nav>
+        <a href="{{ '/' | relative_url }}">Başlangıç</a>
+        <a href="{{ '/tutorials/so101-studio/' | relative_url }}">SO-101 Kılavuzu</a>
+        <a href="https://labs.hashtagworldcompany.com/product">SO-101 Ürün</a>
+      </nav>
+    </header>
+    <main class="content-shell">
+      {{ content }}
+    </main>
+  </body>
+</html>

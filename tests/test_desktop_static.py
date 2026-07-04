@@ -8,11 +8,12 @@ def test_desktop_cockpit_static_files_include_required_screens_and_i18n() -> Non
     index = (ROOT / "apps/desktop/index.html").read_text(encoding="utf-8")
     script = (ROOT / "apps/desktop/app.js").read_text(encoding="utf-8")
 
-    for screen in ["home", "devices", "calibration", "live", "recording", "datasets", "policies", "agent", "diagnostics", "settings"]:
+    for screen in ["home", "guide", "devices", "calibration", "live", "recording", "datasets", "policies", "agent", "diagnostics", "settings"]:
         assert f'data-screen="{screen}"' in index
 
     assert "const dictionaries" in script
     assert "Başlangıç" in script
+    assert "Kılavuz" in script
     assert "Diagnostics" in script
     assert "fetchJson('/health')" in script
     assert "fetchJson('/capabilities')" in script
@@ -20,6 +21,7 @@ def test_desktop_cockpit_static_files_include_required_screens_and_i18n() -> Non
     assert "new EventSource('/events')" in script
     assert "Hugging Face egitim ayari" in index
     assert "API key vault" in index
+    assert "SO101 + Studio operasyon rehberi" in index
 
 
 def test_desktop_cockpit_uses_high_contrast_critical_controls() -> None:

@@ -26,6 +26,7 @@
 
       <aside class="sidebar">
         <button data-screen="home" class="nav active">Başlangıç</button>
+        <button data-screen="guide" class="nav">Kılavuz</button>
         <button data-screen="devices" class="nav">Cihazlar</button>
         <button data-screen="calibration" class="nav">Kalibrasyon</button>
         <button data-screen="live" class="nav">Canlı Kontrol</button>
@@ -85,6 +86,54 @@
             <article class="solid-panel warning">
               <h2>Fiziksel hareket kilidi</h2>
               <p>Teleop, motor testi, kayit ve real rollout kullanici unlock, sure limiti, e-stop ve SafetyGate onayi olmadan baslamaz.</p>
+            </article>
+          </div>
+        </section>
+
+        <section data-panel="guide" class="screen">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Kullanıcı kılavuzu</p>
+              <h1>SO101 + Studio operasyon rehberi</h1>
+            </div>
+            <a id="guide-pages-link" class="secondary link-button" href="https://mertozbas.github.io/hashtag-robotic-studio/tutorials/so101-studio/" target="_blank" rel="noreferrer">GitHub Pages</a>
+          </div>
+          <div class="guide-layout">
+            <article class="solid-panel guide-panel">
+              <h2>İlk kurulum sırası</h2>
+              <ol id="guide-checklist" class="step-list guide-steps">
+                <li class="blocked"><span>Robotu sabit çalışma alanına yerleştir<small>Follower çalışma hacmi boş ve acil stop yolu erişilebilir olmalı.</small></span><strong>Manuel</strong></li>
+                <li class="blocked"><span>Gateway ve cihaz envanterini aç<small>Port, kamera ve kalibrasyon adayları sadece okunur modda listelenir.</small></span><strong>Oku</strong></li>
+                <li class="blocked"><span>Follower / leader rolünü doğrula<small>Port ismi varsayılmaz; rol ve kalibrasyon eşleşmesi gerekir.</small></span><strong>Doğrula</strong></li>
+                <li class="blocked"><span>Hugging Face token bağla<small>Dataset upload, remote training ve model download için Ayarlar ekranındaki API key vault kullanılır.</small></span><strong>Ayarlar</strong></li>
+                <li class="blocked"><span>Dataset kaydını planla<small>Task metni, episode süresi, FPS, kamera keyleri ve süre limiti belirlenir.</small></span><strong>Kayıt</strong></li>
+                <li class="blocked"><span>Policy compatibility raporunu kontrol et<small>Action dimension, kamera mapping, unit conversion ve remote code trust blokajları çözülmeden real rollout yok.</small></span><strong>Policy</strong></li>
+              </ol>
+            </article>
+
+            <article class="solid-panel warning guide-panel">
+              <h2>Fiziksel hareket kuralı</h2>
+              <p>Teleop, kayıt, motor testi ve real rollout kullanıcı unlock, süre limiti, acil stop, workspace_clear ve SafetyGate onayı olmadan başlamaz.</p>
+              <p>Kalibrasyon dosyasını yazma veya üzerine yazma işlemi backup, robot rol doğrulaması ve açık kullanıcı onayı olmadan kapalıdır.</p>
+            </article>
+          </div>
+
+          <div class="guide-grid">
+            <article class="solid-panel">
+              <h2>Dashboard ekranları</h2>
+              <p>Başlangıç readiness skorunu, Cihazlar port/kamera adaylarını, Kalibrasyon dosya durumunu, Kayıt dataset planını, Policyler model uyumluluğunu ve Agent tool izinlerini gösterir.</p>
+            </article>
+            <article class="solid-panel">
+              <h2>API key vault</h2>
+              <p>Hugging Face, OpenAI, Anthropic, Google Gemini, GitHub, W&B, AWS ve Custom MCP keyleri masked status olarak tutulur; secret değerleri response, log veya support bundle içinde gösterilmez.</p>
+            </article>
+            <article class="solid-panel">
+              <h2>Hugging Face eğitim akışı</h2>
+              <p>Dataset kalite kontrolü tamamlandıktan sonra policy family, compute hedefi ve output model repo seçilir. Eğitim işi kullanıcı onayı olmadan başlatılmaz.</p>
+            </article>
+            <article class="solid-panel">
+              <h2>Agent operasyon modu</h2>
+              <p>Agent diagnose ve simulation tool'larını kullanabilir; fiziksel tool'lar session scope, operation contract ve SafetyGate olmadan kapalı kalır.</p>
             </article>
           </div>
         </section>

@@ -1,0 +1,10 @@
+title: Hashtag Robotic Studio
+description: SO-101 robot kolu ve Hashtag Robotic Studio kullanıcı kılavuzları.
+baseurl: "/hashtag-robotic-studio"
+url: "https://mertozbas.github.io"
+lang: tr
+markdown: kramdown
+exclude:
+  - CURRENT_SPRINT.md
+  - PROJECT_STATE.md
+  - templates/

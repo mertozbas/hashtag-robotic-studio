@@ -46,6 +46,7 @@ button {
 }
 
 button:disabled { cursor: not-allowed; opacity: 0.72; }
+a { color: inherit; }
 input, select, textarea { width: 100%; border-radius: 6px; padding: 10px; }
 textarea { min-height: 132px; resize: vertical; }
 
@@ -136,6 +137,8 @@ h2 { font-size: 16px; margin-bottom: 10px; }
 .form-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .form-grid.compact { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .key-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.guide-layout { display: grid; grid-template-columns: minmax(420px, 1.2fr) minmax(300px, 0.8fr); gap: 14px; }
+.guide-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; margin-top: 14px; }
 
 .glass-panel, .solid-panel {
   border: 1px solid var(--line);
@@ -251,6 +254,7 @@ h2 { font-size: 16px; margin-bottom: 10px; }
 .critical.amber { background: var(--amber); color: white; }
 .primary { background: var(--cyan); border-color: var(--cyan); color: white; font-weight: 800; }
 .secondary { background: #1b2a32; }
+.link-button { min-height: 40px; display: inline-flex; align-items: center; border-radius: 6px; border: 1px solid var(--line); padding: 0 12px; text-decoration: none; }
 
 .camera-preview .preview-frame {
   min-height: 220px;
@@ -268,11 +272,14 @@ label input, label select { margin-top: 6px; color: var(--text); }
 .key-card form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; margin-top: 10px; }
 .key-card strong { display: block; margin-bottom: 4px; }
 .key-status { color: var(--muted); font-size: 13px; }
+.guide-panel { min-height: 100%; }
+.guide-steps { padding-left: 22px; }
+.guide-grid p, .guide-panel p { color: var(--muted); line-height: 1.48; }
 
 @media (max-width: 1120px) {
   .app-shell { grid-template-columns: 180px minmax(0, 1fr); }
   .inspector { grid-column: 1 / -1; border-left: 0; border-top: 1px solid var(--line); }
-  .hero-grid, .split-grid, .control-grid, .ops-grid, .form-grid, .key-grid { grid-template-columns: 1fr; }
+  .hero-grid, .split-grid, .control-grid, .ops-grid, .form-grid, .key-grid, .guide-layout, .guide-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 760px) {
