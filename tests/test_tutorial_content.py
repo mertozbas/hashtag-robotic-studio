@@ -29,6 +29,7 @@ def test_github_pages_tutorial_has_frontmatter_and_core_sections() -> None:
 
     for permalink in [
         "/tutorials/so101-studio/setup/",
+        "/tutorials/so101-studio/first-run/",
         "/tutorials/so101-studio/hardware/",
         "/tutorials/so101-studio/dashboard/",
         "/tutorials/so101-studio/safety/",
@@ -44,6 +45,7 @@ def test_github_pages_tutorial_has_frontmatter_and_core_sections() -> None:
 def test_tutorial_is_a_multi_page_book_not_single_scroll_page() -> None:
     expected_pages = {
         "setup.md": "guide_section: setup",
+        "first-run.md": "guide_section: first-run",
         "hardware.md": "guide_section: hardware",
         "dashboard.md": "guide_section: dashboard",
         "safety.md": "guide_section: safety",
@@ -82,6 +84,29 @@ def test_tutorial_keeps_physical_motion_behind_safety_gate() -> None:
         "acil stop",
         "workspace_clear",
         "Kalibrasyon dosyasını yazma veya üzerine yazma",
+        "Passkey",
+        "Face ID",
+        "Touch ID",
+    ]:
+        assert phrase in guide
+
+
+def test_tutorial_answers_customer_first_run_questions() -> None:
+    guide = "\n".join(
+        path.read_text(encoding="utf-8")
+        for path in [GUIDE, *(sorted(GUIDE_DIR.glob("*.md")))]
+    )
+
+    for phrase in [
+        "Müşteri ürününde hedef kurulum yolu installer",
+        "Geliştirici yolu: git clone",
+        "Gateway bugün `mode=local_fake`",
+        "USB portlarını tara",
+        "Otomatik tanıma ne kadar otomatik?",
+        "Eğitim verisi nasıl toplanır?",
+        "Eğitilen policy nasıl kullanılır?",
+        "Hugging Face upload açık kullanıcı aksiyonudur",
+        "passkey unlock ve SafetyGate",
     ]:
         assert phrase in guide
 
@@ -94,7 +119,9 @@ def test_tutorial_links_official_sources_and_reuses_site_media_paths() -> None:
 
     for url in [
         "https://labs.hashtagworldcompany.com/product",
+        "https://github.com/cagataycali/scout-the-rover",
         "https://strands-labs.github.io/robots/",
+        "https://huggingface.co/docs/lerobot/en/installation",
         "https://huggingface.co/docs/lerobot/en/so101",
         "https://huggingface.co/docs/lerobot/en/il_robots",
         "https://huggingface.co/docs/lerobot/en/act",

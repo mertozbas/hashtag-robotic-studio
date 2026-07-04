@@ -62,6 +62,6 @@ lang: tr
 </section>
 
 <nav class="next-prev" aria-label="Bölüm gezinme">
-  <a href="{{ '/tutorials/so101-studio/setup/' | relative_url }}">Önceki: Kurulum Akışı</a>
+  <a href="{{ '/tutorials/so101-studio/first-run/' | relative_url }}">Önceki: İlk Kullanım</a>
   <a href="{{ '/tutorials/so101-studio/dashboard/' | relative_url }}">Sonraki: Dashboard</a>
 </nav>

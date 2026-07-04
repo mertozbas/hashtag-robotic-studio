@@ -11,14 +11,16 @@ lang: tr
 <header class="page-head">
   <p class="eyebrow">Chapter 09</p>
   <h1>Kaynaklar ve ürün referansları.</h1>
-  <p class="lead">Bu kitapçık Hashtag Robotics ürün assetleri, Strands Robots dokümantasyon yaklaşımı ve LeRobot resmi SO-101 kaynakları dikkate alınarak hazırlanır.</p>
+  <p class="lead">Bu kitapçık Hashtag Robotics ürün assetleri, Scout rover’ın passkey güvenlik modeli, Strands Robots dokümantasyon yaklaşımı ve LeRobot resmi SO-101 kaynakları dikkate alınarak hazırlanır.</p>
 </header>
 
 <section class="doc-section">
   <div class="source-grid">
     <div class="source-card"><strong>Hashtag Robotics SO-101 ürün sayfası</strong><a href="https://labs.hashtagworldcompany.com/product">https://labs.hashtagworldcompany.com/product</a></div>
+    <div class="source-card"><strong>Scout the Rover</strong><a href="https://github.com/cagataycali/scout-the-rover">https://github.com/cagataycali/scout-the-rover</a></div>
     <div class="source-card"><strong>Strands Robots docs</strong><a href="https://strands-labs.github.io/robots/">https://strands-labs.github.io/robots/</a></div>
     <div class="source-card"><strong>Strands Robots GitHub</strong><a href="https://github.com/strands-labs/robots">https://github.com/strands-labs/robots</a></div>
+    <div class="source-card"><strong>LeRobot installation</strong><a href="https://huggingface.co/docs/lerobot/en/installation">https://huggingface.co/docs/lerobot/en/installation</a></div>
     <div class="source-card"><strong>LeRobot SO-101</strong><a href="https://huggingface.co/docs/lerobot/en/so101">https://huggingface.co/docs/lerobot/en/so101</a></div>
     <div class="source-card"><strong>LeRobot imitation learning</strong><a href="https://huggingface.co/docs/lerobot/en/il_robots">https://huggingface.co/docs/lerobot/en/il_robots</a></div>
     <div class="source-card"><strong>LeRobot ACT</strong><a href="https://huggingface.co/docs/lerobot/en/act">https://huggingface.co/docs/lerobot/en/act</a></div>

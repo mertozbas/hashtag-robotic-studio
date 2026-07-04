@@ -161,6 +161,15 @@
       "area": "docs",
       "importance": "high",
       "tags": ["guide-book", "github-pages", "multi-page", "autoplay-video", "so101"]
+    },
+    {
+      "type": "implementation_note",
+      "title": "Customer first-run SO-101 guide",
+      "file": "memory/source/operations/customer_first_run_guide.md",
+      "status": "active",
+      "area": "docs",
+      "importance": "high",
+      "tags": ["customer-guide", "first-run", "passkey", "safety", "so101"]
     }
   ]
 }

@@ -11,9 +11,25 @@ lang: tr
 <header class="page-head">
   <p class="eyebrow">Chapter 04</p>
   <h1>SafetyGate fiziksel dünyaya çıkan kapıdır.</h1>
-  <p class="lead">Fiziksel hareket başlatma, teleop, motor testi, kayıt ve real rollout kullanıcı unlock olmadan başlamaz. Dashboard hazır görünse bile operation contract eksikse hareket yok.</p>
-  <p class="lead narrow">Her fiziksel operation için süre limiti, acil stop ve workspace_clear alanları açıkça doğrulanır.</p>
+  <p class="lead">Scout rover’daki passkey fikrini SO-101’e uyarlıyoruz: dashboard açılabilir, cihazlar okunabilir, kamera görülebilir; ama fiziksel hareket için kısa süreli güvenlik unlock’u gerekir.</p>
+  <p class="lead narrow">Fiziksel hareket başlatma, teleop, motor testi, kayıt ve real rollout kullanıcı unlock olmadan başlamaz. Her fiziksel operation için süre limiti, acil stop ve workspace_clear alanları açıkça doğrulanır.</p>
 </header>
+
+<section class="doc-section">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">Passkey unlock</p>
+      <h2>Face ID / Touch ID benzeri katman nasıl çalışır?</h2>
+    </div>
+    <p>Final üründe bu katman WebAuthn/passkey mantığıyla tasarlanır: private key cihazın secure enclave alanından çıkmaz; Studio sadece public credential ve kısa süreli session doğrular.</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-row" data-reveal><span>01</span><div><h3>İlk admin enrollment</h3><p>İlk açılışta admin passkey oluşturulur. Kayıt yoksa app `setup_required` durumuna düşer ve fiziksel hareket kapalı kalır.</p></div></div>
+    <div class="timeline-row" data-reveal><span>02</span><div><h3>Session login</h3><p>Her yeni oturumda kullanıcı Face ID, Touch ID, Windows Hello veya security key ile passkey challenge imzalar.</p></div></div>
+    <div class="timeline-row" data-reveal><span>03</span><div><h3>Motion unlock</h3><p>Teleop, motor testi, kayıt, real rollout veya agent physical task için ayrı kısa süreli unlock istenir.</p></div></div>
+    <div class="timeline-row" data-reveal><span>04</span><div><h3>Auto-lock</h3><p>Operation bitince, STOP basılınca, süre dolunca veya app bağlantısı kopunca fiziksel tool’lar kapanır.</p></div></div>
+  </div>
+</section>
 
 <section class="doc-section">
   <div class="split">
@@ -21,6 +37,7 @@ lang: tr
       <h2>Bloklu kalması gereken durumlar</h2>
       <ul>
         <li>Follower port bilinmiyor veya role doğrulanmadı.</li>
+        <li>Passkey session yok veya motion unlock süresi doldu.</li>
         <li>Kalibrasyon id eşleşmiyor.</li>
         <li>Camera config veya image key mapping eksik.</li>
         <li>Policy action dimension ve unit conversion doğrulanmadı.</li>

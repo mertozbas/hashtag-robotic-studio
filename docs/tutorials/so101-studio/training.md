@@ -10,8 +10,8 @@ lang: tr
 
 <header class="page-head">
   <p class="eyebrow">Chapter 07</p>
-  <h1>Training otomatik başlatılmaz; önce plan ve uyumluluk hazırlanır.</h1>
-  <p class="lead">Eğitim maliyetli ve uzun sürebilir. Studio dataset kalite kontrolü, Hugging Face token, output repo ve feature mapping tamamlanınca çalıştırılabilir plan üretir.</p>
+  <h1>Dataset hazırsa Studio training planı üretir.</h1>
+  <p class="lead">Eğitim maliyetli ve uzun sürebilir. Studio dataset kalite kontrolü, Hugging Face token, output repo ve feature mapping tamamlanınca çalıştırılabilir plan üretir; kullanıcı onayı olmadan Hub upload veya training başlatmaz.</p>
 </header>
 
 <section class="doc-section">
@@ -30,6 +30,23 @@ lang: tr
 hf auth login
 lerobot-record --dataset.repo_id=&lt;user&gt;/&lt;dataset&gt;
 lerobot-train --policy.type=act --dataset.repo_id=&lt;user&gt;/&lt;dataset&gt;</code></pre>
+  </div>
+</section>
+
+<section class="doc-section">
+  <div class="section-head">
+    <div>
+      <p class="eyebrow">After training</p>
+      <h2>Eğitilen policy nasıl kullanılır?</h2>
+    </div>
+    <p>Policy kullanmak training kadar güvenlik ister. Studio önce checkpoint’i indirir veya lokal path’ten okur, sonra kamera/state/action mapping’i dataset ile karşılaştırır.</p>
+  </div>
+  <div class="timeline">
+    <div class="timeline-row" data-reveal><span>01</span><div><h3>Checkpoint seç</h3><p>Hugging Face model repo veya lokal `outputs/train/.../pretrained_model` path’i seçilir.</p></div></div>
+    <div class="timeline-row" data-reveal><span>02</span><div><h3>Compatibility report al</h3><p>Policy’nin beklediği image key, state feature order ve action dimension mevcut robot config’i ile eşleşmelidir.</p></div></div>
+    <div class="timeline-row" data-reveal><span>03</span><div><h3>Sim/dry-run çalıştır</h3><p>Gerçek robot öncesi simülasyon veya no-motion dry-run yapılır. Mapping unknown ise real rollout kapalı kalır.</p></div></div>
+    <div class="timeline-row" data-reveal><span>04</span><div><h3>Real rollout için unlock al</h3><p>Passkey session, workspace_clear, emergency stop, duration limit ve SafetyGate sonucu olmadan policy gerçek robotta çalışmaz.</p></div></div>
+    <div class="timeline-row" data-reveal><span>05</span><div><h3>Evaluation dataset kaydet</h3><p>Policy çalışırken ayrı `eval_*` dataset kaydedilir. Başarı/başarısızlık oranı Dataset Studio’da incelenir.</p></div></div>
   </div>
 </section>
 
