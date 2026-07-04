@@ -27,8 +27,34 @@
         <a href="https://github.com/mertozbas/hashtag-robotic-studio">GitHub</a>
       </nav>
     </header>
-    <main class="content-shell">
-      {{ content }}
-    </main>
+    {% if page.book == "so101" %}
+      <main class="book-shell">
+        <aside class="book-sidebar" aria-label="SO-101 kılavuz bölümleri">
+          <a class="book-title" href="{{ '/tutorials/so101-studio/' | relative_url }}">
+            <span>SO-101 Studio Book</span>
+            <small>Customer operating guide</small>
+          </a>
+          <nav class="book-nav">
+            <a class="{% if page.guide_section == 'overview' %}active{% endif %}" href="{{ '/tutorials/so101-studio/' | relative_url }}">Başlangıç</a>
+            <a class="{% if page.guide_section == 'setup' %}active{% endif %}" href="{{ '/tutorials/so101-studio/setup/' | relative_url }}">Kurulum Akışı</a>
+            <a class="{% if page.guide_section == 'hardware' %}active{% endif %}" href="{{ '/tutorials/so101-studio/hardware/' | relative_url }}">Robot ve Parçalar</a>
+            <a class="{% if page.guide_section == 'dashboard' %}active{% endif %}" href="{{ '/tutorials/so101-studio/dashboard/' | relative_url }}">Dashboard</a>
+            <a class="{% if page.guide_section == 'safety' %}active{% endif %}" href="{{ '/tutorials/so101-studio/safety/' | relative_url }}">SafetyGate</a>
+            <a class="{% if page.guide_section == 'api-keys' %}active{% endif %}" href="{{ '/tutorials/so101-studio/api-keys/' | relative_url }}">API Key Vault</a>
+            <a class="{% if page.guide_section == 'dataset' %}active{% endif %}" href="{{ '/tutorials/so101-studio/dataset/' | relative_url }}">Dataset Kaydı</a>
+            <a class="{% if page.guide_section == 'training' %}active{% endif %}" href="{{ '/tutorials/so101-studio/training/' | relative_url }}">Hugging Face Eğitim</a>
+            <a class="{% if page.guide_section == 'agent' %}active{% endif %}" href="{{ '/tutorials/so101-studio/agent/' | relative_url }}">Agent Modu</a>
+            <a class="{% if page.guide_section == 'sources' %}active{% endif %}" href="{{ '/tutorials/so101-studio/sources/' | relative_url }}">Kaynaklar</a>
+          </nav>
+        </aside>
+        <article class="book-page">
+          {{ content }}
+        </article>
+      </main>
+    {% else %}
+      <main class="content-shell">
+        {{ content }}
+      </main>
+    {% endif %}
   </body>
 </html>

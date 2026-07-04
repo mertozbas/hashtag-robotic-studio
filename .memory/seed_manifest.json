@@ -152,6 +152,15 @@
       "area": "docs",
       "importance": "high",
       "tags": ["guide-redesign", "github-pages", "visual-design", "so101", "strands-robots"]
+    },
+    {
+      "type": "implementation_note",
+      "title": "Book-style GitHub Pages guide",
+      "file": "memory/source/operations/book_style_github_pages_guide.md",
+      "status": "active",
+      "area": "docs",
+      "importance": "high",
+      "tags": ["guide-book", "github-pages", "multi-page", "autoplay-video", "so101"]
     }
   ]
 }
