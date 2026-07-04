@@ -1,0 +1,79 @@
+<svg width="960" height="540" viewBox="0 0 960 540" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">SO-101 Studio control loop</title>
+  <desc id="desc">Animated loop from operator to Studio, SafetyGate, robot, dataset, policy and agent.</desc>
+  <defs>
+    <linearGradient id="arm" x1="190" y1="320" x2="690" y2="160" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7DD3FC"/>
+      <stop offset="0.52" stop-color="#5EEAD4"/>
+      <stop offset="1" stop-color="#FBBF24"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <path id="orbit" d="M172 282C172 133 302 70 481 70C660 70 790 133 790 282C790 431 660 490 481 490C302 490 172 431 172 282Z"/>
+  </defs>
+  <rect width="960" height="540" rx="28" fill="#071014"/>
+  <path d="M88 426H872" stroke="#20313A" stroke-width="2"/>
+  <path d="M88 352H872" stroke="#20313A" stroke-width="2" stroke-dasharray="8 10"/>
+  <g opacity="0.28">
+    <path d="M118 100H842" stroke="#2F3D45"/>
+    <path d="M118 160H842" stroke="#2F3D45"/>
+    <path d="M118 220H842" stroke="#2F3D45"/>
+    <path d="M118 280H842" stroke="#2F3D45"/>
+    <path d="M118 340H842" stroke="#2F3D45"/>
+    <path d="M118 400H842" stroke="#2F3D45"/>
+    <path d="M180 72V456" stroke="#2F3D45"/>
+    <path d="M300 72V456" stroke="#2F3D45"/>
+    <path d="M420 72V456" stroke="#2F3D45"/>
+    <path d="M540 72V456" stroke="#2F3D45"/>
+    <path d="M660 72V456" stroke="#2F3D45"/>
+    <path d="M780 72V456" stroke="#2F3D45"/>
+  </g>
+  <g filter="url(#glow)">
+    <path d="M210 354L292 354L346 246L470 202L588 284L686 250" stroke="url(#arm)" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="210" cy="354" r="42" fill="#64748B"/>
+    <circle cx="346" cy="246" r="29" fill="#0F766E"/>
+    <circle cx="470" cy="202" r="25" fill="#0891B2"/>
+    <circle cx="588" cy="284" r="22" fill="#5EEAD4"/>
+    <path d="M690 234L746 214M696 264L758 278" stroke="#FBBF24" stroke-width="14" stroke-linecap="round"/>
+  </g>
+  <g>
+    <rect x="86" y="80" width="150" height="58" rx="14" fill="#10181D" stroke="#2F3D45"/>
+    <text x="161" y="113" text-anchor="middle" fill="#EDF7F5" font-family="ui-sans-serif, system-ui" font-size="17" font-weight="700">Operator</text>
+    <rect x="308" y="48" width="176" height="58" rx="14" fill="#12313A" stroke="#0891B2"/>
+    <text x="396" y="82" text-anchor="middle" fill="#EDF7F5" font-family="ui-sans-serif, system-ui" font-size="17" font-weight="700">Studio UI</text>
+    <rect x="586" y="78" width="180" height="58" rx="14" fill="#2A1B10" stroke="#A16207"/>
+    <text x="676" y="113" text-anchor="middle" fill="#FACC15" font-family="ui-sans-serif, system-ui" font-size="17" font-weight="700">SafetyGate</text>
+    <rect x="656" y="404" width="174" height="58" rx="14" fill="#10181D" stroke="#2F3D45"/>
+    <text x="743" y="438" text-anchor="middle" fill="#EDF7F5" font-family="ui-sans-serif, system-ui" font-size="17" font-weight="700">Dataset</text>
+    <rect x="324" y="438" width="182" height="58" rx="14" fill="#171426" stroke="#8250DF"/>
+    <text x="415" y="472" text-anchor="middle" fill="#E9D5FF" font-family="ui-sans-serif, system-ui" font-size="17" font-weight="700">Policy</text>
+    <rect x="112" y="400" width="172" height="58" rx="14" fill="#0D2F25" stroke="#12805C"/>
+    <text x="198" y="434" text-anchor="middle" fill="#86EFAC" font-family="ui-sans-serif, system-ui" font-size="17" font-weight="700">Agent</text>
+  </g>
+  <path d="M242 108C280 92 294 86 308 80" stroke="#7DD3FC" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 10"/>
+  <path d="M486 80C524 88 550 96 586 105" stroke="#FBBF24" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 10"/>
+  <path d="M734 138C770 220 774 300 744 398" stroke="#FBBF24" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 10"/>
+  <path d="M652 431C600 454 548 464 510 467" stroke="#A78BFA" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 10"/>
+  <path d="M320 460C276 450 246 438 286 428" stroke="#86EFAC" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 10"/>
+  <path d="M175 394C143 318 143 208 162 142" stroke="#7DD3FC" stroke-width="3" stroke-linecap="round" stroke-dasharray="8 10"/>
+  <circle r="8" fill="#7DD3FC">
+    <animateMotion dur="7s" repeatCount="indefinite" rotate="auto">
+      <mpath href="#orbit"/>
+    </animateMotion>
+  </circle>
+  <circle r="5" fill="#FBBF24">
+    <animateMotion dur="7s" begin="-2.2s" repeatCount="indefinite" rotate="auto">
+      <mpath href="#orbit"/>
+    </animateMotion>
+  </circle>
+  <circle r="5" fill="#86EFAC">
+    <animateMotion dur="7s" begin="-4.6s" repeatCount="indefinite" rotate="auto">
+      <mpath href="#orbit"/>
+    </animateMotion>
+  </circle>
+</svg>

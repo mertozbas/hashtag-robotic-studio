@@ -7,6 +7,8 @@ PAGES_CONFIG = ROOT / "docs/_config.yml"
 PAGES_INDEX = ROOT / "docs/index.md"
 PAGES_LAYOUT = ROOT / "docs/_layouts/default.html"
 PAGES_CSS = ROOT / "docs/assets/tutorial.css"
+PAGES_JS = ROOT / "docs/assets/tutorial.js"
+ANIMATED_SVG = ROOT / "docs/assets/so101-loop.svg"
 PAGES_WORKFLOW = ROOT / ".github/workflows/pages.yml"
 
 
@@ -21,17 +23,19 @@ def test_github_pages_tutorial_has_frontmatter_and_core_sections() -> None:
     ]:
         assert field in guide
 
-    for heading in [
-        "## 1. Bu kılavuz neyi kapsıyor?",
-        "## 3. İlk açılış: dashboard mantığı",
-        "## 5. API key vault ve model eğitimi",
-        "## 7. Veri kaydı",
-        "## 8. Hugging Face üzerinde eğitim",
-        "## 10. Agent operasyon modu",
-        "## 12. GitHub Pages medya planı",
-        "## 14. Kaynaklar",
+    for marker in [
+        'id="start"',
+        'id="loop"',
+        'id="hardware"',
+        'id="dashboard"',
+        'id="safety"',
+        'id="apikeys"',
+        'id="record"',
+        'id="train"',
+        'id="agent"',
+        'id="sources"',
     ]:
-        assert heading in guide
+        assert marker in guide
 
 
 def test_tutorial_keeps_physical_motion_behind_safety_gate() -> None:
@@ -54,6 +58,7 @@ def test_tutorial_links_official_sources_and_reuses_site_media_paths() -> None:
 
     for url in [
         "https://labs.hashtagworldcompany.com/product",
+        "https://strands-labs.github.io/robots/",
         "https://huggingface.co/docs/lerobot/en/so101",
         "https://huggingface.co/docs/lerobot/en/il_robots",
         "https://huggingface.co/docs/lerobot/en/act",
@@ -64,10 +69,11 @@ def test_tutorial_links_official_sources_and_reuses_site_media_paths() -> None:
         assert url in guide
 
     for asset_path in [
-        "/assets/hero-follower.webp",
-        "/assets/leader-follower.jpg",
+        "/assets/media/hero-follower.webp",
+        "/assets/media/leader-follower.jpg",
         "/assets/anatomy/Joint1.mp4",
         "/assets/anatomy/Gripper.mp4",
+        "/assets/so101-loop.svg",
     ]:
         assert asset_path in guide
 
@@ -77,13 +83,48 @@ def test_repository_contains_github_pages_site_shell() -> None:
     index = PAGES_INDEX.read_text(encoding="utf-8")
     layout = PAGES_LAYOUT.read_text(encoding="utf-8")
     css = PAGES_CSS.read_text(encoding="utf-8")
+    script = PAGES_JS.read_text(encoding="utf-8")
     workflow = PAGES_WORKFLOW.read_text(encoding="utf-8")
 
     assert 'baseurl: "/hashtag-robotic-studio"' in config
     assert "permalink: /" in index
     assert "/tutorials/so101-studio/" in index
     assert "{{ content }}" in layout
+    assert "/assets/tutorial.js" in layout
+    assert "og:image" in layout
     assert "Hashtag Robotic Studio" in layout
     assert "color-scheme: dark" in css
+    assert ".guide-shell" in css
+    assert ".pipeline" in css
+    assert "IntersectionObserver" in script
     assert "actions/jekyll-build-pages@v1" in workflow
     assert "actions/deploy-pages@v4" in workflow
+
+
+def test_tutorial_visual_assets_are_present_and_active() -> None:
+    guide = GUIDE.read_text(encoding="utf-8")
+    svg = ANIMATED_SVG.read_text(encoding="utf-8")
+
+    for relative_path in [
+        "docs/assets/media/leader-follower.jpg",
+        "docs/assets/media/hero-follower.webp",
+        "docs/assets/media/leader.webp",
+        "docs/assets/media/part-servo.jpg",
+        "docs/assets/media/part-board.png",
+        "docs/assets/media/part-gripper.png",
+        "docs/assets/media/part-lerobot.png",
+        "docs/assets/media/so101-ar.glb",
+        "docs/assets/anatomy/Joint1.mp4",
+        "docs/assets/anatomy/Joint2.mp4",
+        "docs/assets/anatomy/Joint3.mp4",
+        "docs/assets/anatomy/Gripper.mp4",
+        "docs/assets/so101-loop.svg",
+    ]:
+        path = ROOT / relative_path
+        assert path.exists(), relative_path
+        assert path.stat().st_size > 1024, relative_path
+
+    assert "<video controls" in guide
+    assert "preload=\"metadata\"" in guide
+    assert "<animateMotion" in svg
+    assert "data-reveal" in guide

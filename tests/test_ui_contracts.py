@@ -110,6 +110,8 @@ def test_cockpit_css_preserves_operational_layout_and_critical_controls() -> Non
     assert "@media (max-width: 1120px)" in css
     assert "@media (max-width: 760px)" in css
     assert "letter-spacing: 0;" in css
+    assert ".guide-layout" in css
+    assert ".guide-grid" in css
 
 
 def test_turkish_first_cockpit_copy_exposes_training_and_safety_surfaces() -> None:

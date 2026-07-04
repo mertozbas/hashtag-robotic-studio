@@ -143,6 +143,15 @@
       "area": "docs",
       "importance": "high",
       "tags": ["guide", "github-pages", "desktop-ui", "publish", "so101"]
+    },
+    {
+      "type": "implementation_note",
+      "title": "Rich GitHub Pages guide redesign",
+      "file": "memory/source/operations/rich_github_pages_guide_redesign.md",
+      "status": "active",
+      "area": "docs",
+      "importance": "high",
+      "tags": ["guide-redesign", "github-pages", "visual-design", "so101", "strands-robots"]
     }
   ]
 }
