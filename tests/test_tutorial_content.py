@@ -1,4 +1,5 @@
 from pathlib import Path
+import subprocess
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -104,6 +105,9 @@ def test_repository_contains_github_pages_site_shell() -> None:
 def test_tutorial_visual_assets_are_present_and_active() -> None:
     guide = GUIDE.read_text(encoding="utf-8")
     svg = ANIMATED_SVG.read_text(encoding="utf-8")
+    tracked_files = set(
+        subprocess.check_output(["git", "ls-files", "docs/assets"], cwd=ROOT, text=True).splitlines()
+    )
 
     for relative_path in [
         "docs/assets/media/leader-follower.jpg",
@@ -123,6 +127,7 @@ def test_tutorial_visual_assets_are_present_and_active() -> None:
         path = ROOT / relative_path
         assert path.exists(), relative_path
         assert path.stat().st_size > 1024, relative_path
+        assert relative_path in tracked_files, relative_path
 
     assert "<video controls" in guide
     assert "preload=\"metadata\"" in guide
